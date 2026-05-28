@@ -1,0 +1,1271 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
+
+    <style>
+
+        .constraint-area {
+            position: absolute;
+            top: 5%;
+            left: 15%;
+            width: 150px;
+            height: 100px;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;                            
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .constraint-area2 {
+            position: absolute;
+            top: 5%;
+            left: 85%;
+            width: 150px;
+            height: 100px;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;                            
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .border-digit {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: #008000;
+            font-weight: bold;
+            width: 10px;
+            height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .border-digit2 {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            color: #008000;
+            font-weight: bold;
+            width: 10px;
+            height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .follower {
+            top: 0%;
+            left: 0%;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            transform: translate(-50%, -50%); /* Center the element on the cursor */
+            pointer-events: none; /* Allows mouse events to pass through */
+            transition: transform 0.1s; /* Add a smooth trailing effect */
+            font-family: 'Courier New', monospace;
+            font-size: 8px;
+            color: black;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .follower2 {
+            top: 0%;
+            left: 0%;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            transform: translate(-50%, -50%); /* Center the element on the cursor */
+            pointer-events: none; /* Allows mouse events to pass through */
+            transition: transform 0.1s; /* Add a smooth trailing effect */
+            font-family: 'Courier New', monospace;
+            font-size: 8px;
+            color: black;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .binary-digit {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .binary-digit2 {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        container {
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: #1abc9c;
+            padding: 20px;
+        }
+
+        container section {
+            border: 2px #ccc solid;
+            flex: auto;
+            padding: 5px 20px;
+            background-color: antiquewhite;
+            justify-content: center text-align: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            container {
+                flex-direction: column
+            }
+
+            section {
+                margin-top: 10px;
+            }
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /*cursor: none; /* Hide the default cursor */
+            background-color: antiquewhite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1abc9c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .form-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group h2 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .radio-option:hover {
+            background-color: #e9ecef;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: #1abc9c;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .info-box {
+            background-color: #e8f6f3;
+            border-left: 4px solid #1abc9c;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #2c3e50;
+        }
+
+        .budget-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+
+        .budget-input:focus {
+            outline: none;
+            border-color: #1abc9c;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #1abc9c;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:hover {
+            background-color: #16a085;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .submit-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        #results {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .results-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-box h2 {
+            color: #1abc9c;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 10px;
+        }
+
+        .recommendations {
+            white-space: pre-wrap;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+
+        .sources {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .sources h3 {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .sources a {
+            display: block;
+            color: #3498db;
+            font-size: 12px;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+
+
+        .error-box {
+            background-color: #fee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            color: #c0392b;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .form-section, .results-box {
+                padding: 20px;
+            }
+        }
+    </style>
+
+    
+
+    <py-script>
+        from pyscript import document
+
+
+        def toggle_help1(event):
+            event.preventDefault()
+            help1 = document.getElementById('help1')
+            if help1.style.display == 'none' or help1.style.display == '':
+                help1.style.display = 'block'
+            else:
+                help1.style.display = 'none'
+
+
+        def continuebutton(event):
+            global hi2
+            # Prevent the form from submitting and refreshing the page
+            event.preventDefault()
+            products = {
+                'gaming/personal': {
+                    'laptop': {
+
+                'low':
+                """
+                <br>If you want a personal computer for gaming but your budget is lower then $600, a good choice may be to buy a used laptop, buy a decent laptop without a graphics card and save up for a GPU and doc and use it as a external graphics proccesing unit, and/or buy a chromebook, which can be a lot cheaper, and use a cloud gaming service like GeForce Now. 
+                <hr>
+
+                <strong>Other recomendations for a higher budget:</strong>
+
+            <br>1. ASUS TUF Gaming A15 (~$700-900)
+            <br>- AMD Ryzen 5 7535HS, RTX 4050, 16GB RAM, 512GB SSD
+            <br>- Great 1080p gaming, solid build quality
+            <br>- 144Hz display for smooth gameplay
+
+            <br><br>2. Acer Nitro 5 (~$650-850)
+            <br>- Intel i5-13450HX, RTX 4050, 16GB RAM, 512GB SSD
+            <br>- Best value for budget gaming
+            <br>- Good cooling system
+
+            <br><br>3. Lenovo LOQ 15 (~$750-950)
+            <br>- AMD Ryzen 5 7640HS, RTX 4050, 16GB RAM, 512GB SSD
+            <br>- Clean design, excellent performance per dollar
+            """,
+                'mid':
+                """
+            <br>1. ASUS ROG Strix G16 (~$1,200-1,500)
+            <br>- Intel i7-13650HX, RTX 4060, 16GB RAM, 1TB SSD
+            <br>- Excellent 1440p gaming, RGB keyboard
+            <br>- 165Hz display with great color accuracy
+
+            <br><br>2. Lenovo Legion 5 Pro (~$1,300-1,600)
+            <br>- AMD Ryzen 7 7745HX, RTX 4070, 16GB RAM, 1TB SSD
+            <br>- Best thermals in class, premium build
+            <br>- 240Hz QHD display
+
+            <br><br>3. MSI Katana 15 (~$1,100-1,400)
+            <br>- Intel i7-13620H, RTX 4060, 16GB RAM, 512GB SSD
+            <br>- Solid all-around gaming laptop
+            """,
+                'high':
+                """
+            <br>1. ASUS ROG Zephyrus G16 (~$1,800-2,300)
+            <br>- Intel Core Ultra 9 185H, RTX 4070, 32GB RAM, 1TB SSD
+            <br>- Thin & light gaming powerhouse
+            <br>- OLED display, premium aluminum build
+
+            <br><br>2. Razer Blade 16 (~$2,400-3,000)
+            <br>- Intel i9-14900HX, RTX 4080, 32GB RAM, 1TB SSD
+            <br>- Best-in-class build quality
+            <br>- Mini LED display
+
+            <br><br>3. Alienware m18 R2 (~$2,500-3,500)
+            <br>- Intel i9-14900HX, RTX 4090, 64GB RAM, 2TB SSD
+            <br>- Desktop replacement, ultimate performance
+            """
+            },
+                    'desktop': {
+                'low':
+                """
+            <br>1. Skytech Chronos (~$800-1,000)
+            <br>- AMD Ryzen 5 5600X, RTX 4060, 16GB RAM, 1TB SSD
+            <br>- Excellent 1080p gaming at high settings
+            <br>- Upgradeable components
+
+
+            <br><br>2. HP Victus 15L (~$750-950)
+            <br>- Intel i5-13400F, RTX 4060, 16GB RAM, 512GB SSD
+            <br>- Compact design, reliable performance
+            <br>- Good airflow
+
+            <br><br>3. iBUYPOWER TraceMR (~$850-1,050)
+            <br>- AMD Ryzen 5 7600, RTX 4060, 16GB RAM, 1TB SSD
+            <br>- Latest AMD platform, great value
+            """,
+                'mid':
+                """
+            <br>1. NZXT Player: Two (~$1,400-1,700)
+            <br>- AMD Ryzen 5 7600X, RTX 4070, 16GB RAM, 1TB SSD
+            <br>- Excellent 1440p gaming
+            <br>- Clean cable management, RGB
+
+            <br><br>2. Skytech Shiva (~$1,500-1,800)
+            <br>- Intel i7-14700F, RTX 4070, 32GB RAM, 1TB SSD
+            <br>- High FPS at 1440p
+            <br>- Liquid cooling included
+
+            <br><br>3. HP Omen 40L (~$1,600-1,900)
+            <br>- AMD Ryzen 7 7700X, RTX 4070 Ti, 32GB RAM, 1TB SSD
+            <br>- Premium pre-built with excellent support
+            """,
+                'high':
+                """
+            <br>1. Corsair Vengeance i7500 (~$2,800-3,200)
+            <br>- Intel i7-14700KF, RTX 4080, 32GB DDR5, 2TB SSD
+            <br>- 4K gaming ready, exceptional cooling
+            <br>- Premium components throughout
+
+            <br><br>2. Alienware Aurora R16 (~$3,000-3,800)
+            <br>- Intel i9-14900KF, RTX 4090, 64GB RAM, 4TB SSD
+            <br>- Iconic design, top-tier performance
+            <br>- Liquid cooling, tool-less upgrades
+
+            <br><br>3. Origin PC Millennium (~$3,500-5,000)
+            <br>- Intel i9-14900K, RTX 4090, 64GB DDR5, 4TB SSD
+            <br>- Fully customizable, hand-built
+            - Lifetime tech support
+            """
+            }
+                },
+                'school/work': {
+                    'laptop': {
+                'low':
+                """
+            <br>1. Lenovo IdeaPad 3 (~$450-600)
+            <br>- AMD Ryzen 5 7520U, 8GB RAM, 256GB SSD
+            <br>- Perfect for students, great battery life
+            <br>- Lightweight at 3.3 lbs
+
+            <br><br>2. Acer Aspire 5 (~$500-650)
+            <br>- Intel i5-1335U, 16GB RAM, 512GB SSD
+            <br>- Excellent multitasking, backlit keyboard
+            <br>- 15.6" Full HD display
+
+            <br><br>3. HP 15 (~$400-550)
+            <br>- AMD Ryzen 5 5500U, 8GB RAM, 256GB SSD
+            <br>- Trusted reliability, good webcam
+            """,
+                'mid':
+                """
+            <br>1. MacBook Air M3 (~$1,100-1,300)
+            <br>- Apple M3 chip, 8GB RAM, 256GB SSD
+            <br>- 18 hour battery, fanless design
+            <br>- Best for creative work & coding
+
+            <br><br>2. Dell XPS 13 (~$1,000-1,300)
+            <br>- Intel Core Ultra 7, 16GB RAM, 512GB SSD
+            <br>- Premium ultrabook, stunning display
+            <br>- Carbon fiber palm rest
+
+            <br><br>3. Lenovo ThinkPad E16 (~$900-1,200)
+            <br>- Intel i7-1355U, 16GB RAM, 512GB SSD
+            <br>- Business-class durability
+            <br>- Legendary keyboard
+            """,
+                'high':
+                """
+            <br>1. MacBook Pro 14" M3 Pro (~$2,000-2,500)
+            <br>- Apple M3 Pro, 18GB RAM, 512GB SSD
+            <br>- Professional performance, XDR display
+            <br>- 18 hour battery life
+
+            <br><br>2. Dell XPS 15 (~$1,800-2,300)
+            <br>- Intel i7-13700H, 32GB RAM, 1TB SSD, RTX 4050
+            <br>- OLED 4K display, content creation beast
+            <br>- Premium build quality
+
+            <br><br>3. Lenovo ThinkPad X1 Carbon Gen 12 (~$2,000-2,500)
+            <br>- Intel Core Ultra 7, 32GB RAM, 1TB SSD
+            <br>- Under 2.5 lbs, military-grade durability
+            """
+            },
+                    'desktop': {
+                'low':
+                """
+            <br>1. HP Pro SFF 400 G9 (~$550-750)
+            <br>- Intel i5-13500, 16GB RAM, 512GB SSD
+            <br>- Compact, energy efficient
+            <br>- Perfect for office work
+
+            <br><br>2. Lenovo ThinkCentre M70q Gen 4 (~$600-800)
+            <br>- Intel i5-13400T, 16GB RAM, 512GB SSD
+            <br>- Tiny form factor (1L volume)
+            <br>- VESA mountable
+
+            <br><br>3. Dell OptiPlex 3000 (~$500-700)
+            <br>- Intel i5-12500, 8GB RAM, 256GB SSD
+            <br>- Enterprise support, reliable
+            """,
+                'mid':
+                """
+            <br>1. Apple Mac Mini M2 (~$600-800)
+            <br>- Apple M2 chip, 8GB RAM, 256GB SSD
+            <br>- Silent operation, tiny footprint
+            <br>- Best for Mac ecosystem users
+
+            <br><br>2. HP EliteDesk 800 G9 (~$1,100-1,400)
+            <br>- Intel i7-13700, 32GB RAM, 1TB SSD
+            <br>- Enterprise-grade security
+            <br>- Tool-less maintenance
+
+            <br><br>3. Dell Precision 3660 (~$1,200-1,500)
+            <br>- Intel i7-13700, 32GB RAM, 1TB SSD
+            <br>- Workstation reliability
+            <br>- ISV certified for pro apps
+            """,
+                'high':
+                """
+            <br>1. Apple Mac Studio M2 Ultra (~$4,000-5,000)
+            <br>- M2 Ultra, 64GB RAM, 1TB SSD
+            <br>- Unmatched creative performance
+            <br>- Silent operation
+
+            <br><br>2. HP Z2 Tower G9 (~$2,500-3,200)
+            <br>- Intel Xeon W-1390, 64GB ECC RAM, 2TB SSD
+            <br>- Professional workstation
+            <br>- ISV certified
+
+            <br><br>3. Dell Precision 7960 (~$3,000-4,000)
+            <br>- Intel Xeon W-2400, 128GB ECC RAM, 2TB SSD
+            <br>- Ultimate workstation power
+            """
+            }
+                },
+                'mixed': {
+                    'laptop': {
+                'low':
+                """
+            <br>1. ASUS Vivobook Pro 15 (~$750-950)
+            <br>- AMD Ryzen 7 5800H, RTX 3050, 16GB RAM, 512GB SSD
+            <br>- Great for work and casual gaming
+            <br>- OLED display option
+
+            <br><br>2. Lenovo IdeaPad Gaming 3 (~$700-900)
+            <br>- AMD Ryzen 5 7535HS, RTX 4050, 16GB RAM, 512GB SSD
+            <br>- Balanced performance
+            <br>- Good battery for a gaming laptop
+
+            <br><br>3. HP Pavilion Plus 14 (~$800-1,000)
+            <br>- Intel i7-13700H, Intel Iris Xe, 16GB RAM, 512GB SSD
+            <br>- Premium build, good for light gaming
+            """,
+                'mid':
+                """
+            <br>1. ASUS ROG Zephyrus G14 (~$1,400-1,700)
+            <br>- AMD Ryzen 9 8945HS, RTX 4060, 16GB RAM, 1TB SSD
+            <br>- Portable powerhouse (3.3 lbs)
+            <br>- 10 hour battery, professional look
+
+            <br><br>2. Lenovo Legion Slim 5 (~$1,300-1,600)
+            <br>- AMD Ryzen 7 7840HS, RTX 4060, 16GB RAM, 1TB SSD
+            <br>- Sleek design, great thermals
+            <br>- Good for office and gaming
+
+            <br><br>3. Dell G16 (~$1,200-1,500)
+            <br>- Intel i9-13900HX, RTX 4060, 16GB RAM, 1TB SSD
+            <br>- Large 16" display for productivity
+            <br>- Solid gaming performance
+            """,
+                'high':
+                """
+            <br>1. ASUS ROG Zephyrus G16 (2024) (~$2,000-2,500)
+            <br>- Intel Core Ultra 9, RTX 4070, 32GB RAM, 1TB SSD
+            <br>- OLED display, aluminum unibody
+            <br>- Professional aesthetics, gaming power
+
+            <br><br>2. MacBook Pro 16" M3 Max (~$3,500-4,500)
+            <br>- M3 Max, 36GB RAM, 1TB SSD
+            <br>- Best for creative professionals
+            <br>- Can run games via CrossOver
+
+            <br><br>3. Razer Blade 16 (~$2,800-3,500)
+            <br>- Intel i9-14900HX, RTX 4080, 32GB RAM, 2TB SSD
+            <br>- Premium build, dual-mode display
+            <br>- Works great in boardroom or battlestation
+            """
+            },
+                    'desktop': {
+                'low':
+                """
+            <br>1. HP Pavilion Gaming TG01 (~$800-1,000)
+            <br>- AMD Ryzen 5 5600G, RTX 4060, 16GB RAM, 512GB SSD
+            <br>- Good for work and 1080p gaming
+            <br>- Compact design
+
+            <br><br>2. Dell G5 Gaming Desktop (~$850-1,100)
+            <br>- Intel i5-13400F, RTX 4060, 16GB RAM, 512GB SSD
+            <br>- Reliable, upgradeable
+            <br>- Clean design for home office
+
+            <br><br>3. Skytech Chronos (~$900-1,100)
+            <br>- AMD Ryzen 5 7600, RTX 4060, 16GB RAM, 1TB SSD
+            <br>- Latest platform, room to grow
+            """,
+                'mid':
+                """
+            <br>1. NZXT Player: Two (~$1,500-1,800)
+            <br>- AMD Ryzen 7 7700X, RTX 4070, 32GB RAM, 1TB SSD
+            <br>- Excellent for work and gaming
+            <br>- Premium cable management
+
+            <br><br>2. Apple Mac Mini M2 Pro (~$1,300-1,600)
+            <br>- M2 Pro, 16GB RAM, 512GB SSD
+            <br>- Best for creative work (no gaming)
+            <br>- Whisper quiet
+
+            <br><br>3. HP Omen 40L (~$1,600-1,900)
+            <br>- Intel i7-14700F, RTX 4070, 32GB RAM, 1TB SSD
+            <br>- Balanced for all tasks
+            <br>- Easy to upgrade
+            """,
+                'high':
+                """
+            <br>1. Corsair Vengeance i7500 (~$2,800-3,400)
+            <br>- Intel i9-14900K, RTX 4080, 64GB RAM, 2TB SSD
+            <br>- Handle any workload
+            <br>- Premium liquid cooling
+
+            <br><br>2. Apple Mac Studio M2 Ultra (~$4,500-6,000)
+            <br>- M2 Ultra, 128GB RAM, 2TB SSD
+            <br>- Ultimate creative workstation
+            <br>- No gaming capability
+
+            <br><br>3. Origin PC Millennium (~$3,500-5,000)
+            <br>- Intel i9-14900KS, RTX 4090, 64GB RAM, 4TB SSD
+            <br>- Fully customizable
+            <br>- Hand-built, lifetime support
+            """
+            }
+                }
+            }
+
+            # Get the selected radio buttons
+            use_case = document.querySelector("input[name='use_case']:checked").value
+            computer_type = document.querySelector("input[name='computer_type']:checked").value
+            budget = document.querySelector("input[name='budget']").value
+            resultsContent = document.getElementById('resultsContent')
+            hi = [document.getElementById(str(i)) for i in range (1, 4)]
+
+            budget = int(budget)
+            if budget <= 1000:
+                tier = 'low'
+            elif budget <= 2000:
+                tier = 'mid'
+            else:
+                tier = 'high'
+
+            if use_case and computer_type:
+                resultsContent.innerHTML = products[use_case][computer_type][tier]
+
+                # Show the results section
+                results = document.getElementById('results')
+                results.style.display = 'block'
+                hi2 = ["hi"] + [i for i in products[use_case][computer_type]
+                        [tier].split("<br>") for char in i if char == "~"] #["hi"] + is there so that the count starts at 1 instead of 0
+
+                for i in range(1, 4): #start at 1 and go to 3
+                    document.getElementById('label_for_user_choice' + str(i)).innerHTML = hi2[i]
+                    document.getElementById('user_choice' + str(i)).value = hi2[i]
+
+
+        def calculate(event):
+            user_choice = document.querySelector("input[name='user_choice']:checked").value
+            add_on = [int(i.value) for i in document.querySelectorAll("input[name='add_on']:checked")]
+
+            i = user_choice.split("-")
+            user_choice_value = int(i[1].replace(",", "").replace(")", ""))
+            subtotal = user_choice_value + sum(add_on)
+            tax = round(subtotal * 0.0825, 2)
+            total = subtotal + tax
+            document.getElementById("computer_choice").innerHTML = "<strong>PC price:</strong><br>" + str(user_choice_value)
+            document.getElementById("add_on_choice").innerHTML = "<strong>add-on price:</strong><br>" + str(sum(add_on))
+            document.getElementById("subtotal").innerHTML = "<strong>Subtotal (total pre-tax):</strong><br>" + str(subtotal)
+            document.getElementById("tax").innerHTML = "<strong>Tax:</strong><br>" + str(tax)
+            document.getElementById("total").innerHTML = "<strong>Total:</strong><br>" + str(total)
+
+    </py-script>
+
+
+</head>
+
+
+    
+<body>
+    <header>
+        
+        <h1 style="text-align: center;">Joe Mama'z Computer store builder</h1>
+        <p style="text-align: center;">
+            <i>All information is from December 2025 and cannot be guaranteed that it will be correct in the future.</i>
+        </p>
+        <div class="constraint-area"></div><div class="follower"></div>
+    </header>
+
+    <div class="constraint-area2"></div>
+    <div class="follower2"></div>
+    
+            <div class="container">
+                <div class="form-section">
+                    <form id="computerForm">
+                        <div class="form-group">
+                            <h2>What will you be using your computer for?</h2>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="use_case" id="gaming" value="gaming/personal">
+                                    <label for="gaming">Gaming/Personal Use</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="use_case" id="school" value="school/work">
+                                    <label for="school">School/Work</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="use_case" id="mixed" value="mixed">
+                                    <label for="mixed">Mixed</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <h2>Do you want a laptop or desktop?</h2>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="computer_type" id="laptop" value="laptop">
+                                    <label for="laptop">Laptop</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="computer_type" id="desktop" value="desktop">
+                                    <label for="desktop">Desktop</label>
+                                </div>
+                            </div>
+                            <div class="info-box">
+                                <strong>Laptop vs Desktop:</strong> Laptops are portable and convenient, but desktops typically offer better performance for the same price. Gaming laptops may run hotter and louder under heavy use.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h2>Enter your budget (in USD)</h2>
+                            <input type="number" class="budget-input" name="budget" id="budget" 
+                                   placeholder="Enter amount (e.g., 1000) or 0 for unlimited" 
+                                   min="" max="50000" value="" required>
+                            <div class="info-box">
+                                Suggested min budgets for each option:
+                                <ol>
+                                    <li>
+                                        <strong>Gaming/personal: </strong>
+                                        <ul style="padding-left: 30px;">
+                                            <li>
+                                                Laptop: $700
+                                            </li>
+                                            <br>
+                                            <li>
+                                                Desktop: $800
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <strong>School/work: </strong>
+                                        <ul style="padding-left: 30px;">
+                                            <li>
+                                                Laptop: $500
+                                            </li>
+                                            <br>
+                                            <li>
+                                                Desktop: $600
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <strong>Mixed: </strong>
+                                        <ul style="padding-left: 30px;">
+                                            <li>
+                                                Laptop: $800
+                                            </li>
+                                            <br>
+                                            <li>
+                                                Desktop: $900
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <br>
+                                </ol>
+                                
+                            </div>
+                        </div>
+
+                        <button py-click="continuebutton" class="submit-btn">
+                            Find My Perfect Computer
+                        </button>
+                    </form>
+                </div>
+
+                <div id="results">
+                    <div class="results-box">
+                        <h2>Recommendations</h2>
+                        <div id="resultsContent">
+                        </div>
+
+                        <div class="form-group">
+                            <br>
+                            <h2>Which computer above do you want</h2>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="user_choice" id="user_choice1" value="gaming/hi" >
+                                    <div id="label_for_user_choice1"></div>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="user_choice" id="user_choice2" value="school/work">
+                                    <div id="label_for_user_choice2"></div>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="user_choice" id="user_choice3" value="mixed">
+                                    <div id="label_for_user_choice3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <h2 style="font-size: 18px;">Do you want any add-ons?</h2>
+                        <div class="radio-group">
+                            
+                            <div class="radio-option">
+                                <input type="checkbox" name="add_on" id="1" value="40">
+                                <div id="label_for_user_choice1"  style="padding-left: 30px;"><strong>Logitech Wireless Mouse Signature M650:</strong> <br> ~$40, silent, different sizes, reliable</div>
+                            </div>
+                            
+                            <div class="radio-option">
+                                <input type="checkbox" name="add_on" id="2" value="190">
+                                <div id="label_for_user_choice2" style="padding-left: 30px;"><strong>Epson EcoTank ET-2400</strong> <br>~$190, Higher inital cost but significantly lower running cost, comes with ~2 years of ink, scan and copy, reliable</div>
+                            </div>
+                            
+                            <div class="radio-option">
+                                <input type="checkbox" name="add_on" id="3" value="130">
+                                <div id="label_for_user_choice3" style="padding-left: 30px;"><strong>Samsung Odyssey G30D</strong> <br>~$130, gaming monitor, 180hz refresh rate, 1080p, superior contrast ratio, deep blacks</div>
+                            </div>
+                            <div class="radio-option">
+                                <input type="checkbox" name="add_on" id="4" value="40">
+                                <div id="label_for_user_choice3" style="padding-left: 30px;"><strong>Redragon Mechanical Gaming Keyboard</strong> <br>~$40, wired, satisfying tactile feedback, rated for 50 million clicks, accurate simultaneous keystrokes</div>
+                            </div>
+                        </div>
+
+                        <button py-click="calculate" class="submit-btn">
+                            Finalize details
+                        </button>
+
+                        <div id="final_results" style="justify-content: center; text-align: center;">
+                            <br>
+                            <br>
+                            <h2>Final price</h2>
+                            
+                            <div id="computer_choice">
+                                
+                            </div>
+                            <hr>
+                            <div id="add_on_choice">
+                                
+                            </div>
+                            <hr>
+                            <div id="subtotal">
+                                
+                            </div>
+                            <hr>
+                            <div id="tax">
+                                
+                            </div>
+                            <hr>
+                            <div id="total">
+                                
+                            </div>
+                            <hr>
+                            <p style="text-align: center;">
+                                Realize that the prices are not exact and are just estimates and will be in USD.
+                            </p>
+                        </div> 
+<!--
+                        <div id="final_results">
+                            <ul style="justify-content: center; text-align: center;">
+                                <li id="computer_choice">
+
+                                </li>
+                                <li id="add_on_choice">
+
+                                </li>
+                                <li id="subtotal">
+
+                                </li>
+                                <li id="tax">
+
+                                </li>
+                                <li id="total">
+
+                                </li>
+                            </ul>
+
+                        </div> -->
+                        
+
+
+                        
+                    </div>
+
+                    
+                </div>
+            </div>
+        
+
+</body>
+
+<script>
+  const follower = document.querySelector('.follower');
+  const constraintArea = document.querySelector('.constraint-area');
+
+
+
+  // Initialize follower position in the center of the constraint area
+  function initializeFollowerPosition() {
+    const rect = constraintArea.getBoundingClientRect();
+    const centerX = rect.left + (rect.width / 2);
+    const centerY = rect.top + (rect.height / 2);
+    const followerRadius = 15;
+
+    follower.style.transform = `translate(${centerX - followerRadius}px, ${centerY - followerRadius}px)`;
+  }
+
+  // Call initialization when page loads
+  //window.addEventListener('load', initializeFollowerPosition);
+  initializeFollowerPosition();
+
+  // Function to create circular binary pattern
+  function createCircularBinary() {
+    follower.innerHTML = ''; // Clear existing content
+    const numDigits = 15; // Number of binary digits around the circle
+    const radius = 10; // Radius of the circle
+
+    for (let i = 0; i < numDigits; i++) {
+      const digit = document.createElement('div');
+      digit.className = 'binary-digit';
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+      // Calculate position around the circle
+      const angle = (i / numDigits) * 2 * Math.PI;
+      const x = Math.cos(angle) * radius + 11; // Adjusted center offset for better centering
+      const y = Math.sin(angle) * radius + 11; // Adjusted center offset for better centering
+
+      digit.style.left = x + 'px';
+      digit.style.top = y + 'px';
+
+      follower.appendChild(digit);
+    }
+  }
+
+  // Update binary display constantly
+  function updateBinaryDisplay() {
+    const digits = follower.querySelectorAll('.binary-digit');
+    digits.forEach(digit => {
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+    });
+  }
+
+  // Function to create binary border around constraint area
+  function createBinaryBorder() {
+    const numBorderDigits = 50; // Number of binary digits around the border
+    const areaWidth = 150;
+    const areaHeight = 100;
+
+    for (let i = 0; i < numBorderDigits; i++) {
+      const digit = document.createElement('div');
+      digit.className = 'border-digit';
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+      // Calculate position around the ellipse perimeter
+      const angle = (i / numBorderDigits) * 2 * Math.PI;
+      const radiusX = (areaWidth + 5) / 2;
+      const radiusY = (areaHeight + 5) / 2;
+      const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+      const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+      digit.style.left = x + 'px';
+      digit.style.top = y + 'px';
+
+      constraintArea.appendChild(digit);
+    }
+  }
+
+  function createBinaryBorder2() {
+    const numBorderDigits = 40; // Number of binary digits around the border
+    const areaWidth = 150;
+    const areaHeight = 100;
+
+    for (let i = 0; i < numBorderDigits; i++) {
+      const digit2 = document.createElement('div');
+      digit2.className = 'border-digit';
+      digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+
+      // Calculate position around the ellipse perimeter
+      const angle = (i / numBorderDigits) * 2 * Math.PI;
+      const radiusX = areaWidth / 2;
+      const radiusY = areaHeight / 2;
+      const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+      const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+      digit2.style.left = x + 'px';
+      digit2.style.top = y + 'px';
+
+      constraintArea.appendChild(digit2);
+    }
+  }
+
+  // Update border binary display
+  function updateBorderBinary() {
+    const borderDigits = constraintArea.querySelectorAll('.border-digit');
+    borderDigits.forEach(digit => {
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+    });
+
+
+    const borderDigits2 =constraintArea.querySelectorAll('.border-digit');
+    borderDigits2.forEach(digit2 => {
+      digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+    });
+
+  }
+
+  // Initialize the circular patterns
+  createCircularBinary();
+  createBinaryBorder();
+  createBinaryBorder2();
+
+  // Start the binary animations
+  setInterval(updateBinaryDisplay, 100); // Update pupil every 100ms
+  setInterval(updateBorderBinary, 80); // Update border every 80ms for slightly different timing
+
+  document.addEventListener('mousemove', (event) => {
+    const rect = constraintArea.getBoundingClientRect();
+    const followerRadius = 15;
+
+    // Calculate center and dimensions of the oval/circle
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const radiusX = (rect.width / 2) - followerRadius;
+    const radiusY = (rect.height / 2) - followerRadius;
+
+    // Get mouse position relative to center
+    let x = event.clientX - centerX;
+    let y = event.clientY - centerY;
+
+    // Check if point is outside the ellipse and constrain it
+    const ellipseEquation = (x * x) / (radiusX * radiusX) + (y * y) / (radiusY * radiusY);
+
+    if (ellipseEquation > 1) {
+      // Point is outside ellipse, project it onto the ellipse boundary
+      const angle = Math.atan2(y, x);
+      x = radiusX * Math.cos(angle);
+      y = radiusY * Math.sin(angle);
+    }
+
+    // Convert back to absolute coordinates
+    const finalX = centerX + x;
+    const finalY = centerY + y;
+
+    follower.style.transform = `translate(${finalX - followerRadius}px, ${finalY - followerRadius}px)`;
+  });
+</script> <!-- eye one-->
+
+<script>
+  const follower2 = document.querySelector('.follower2');
+  const constraintArea2 = document.querySelector('.constraint-area2');
+
+
+
+  // Initialize follower position in the center of the constraint area
+  function initializeFollowerPosition() {
+    const rect = constraintArea2.getBoundingClientRect();
+    const centerX = rect.left + (rect.width / 2);
+    const centerY = rect.top + (rect.height / 2);
+    const followerRadius = 15;
+
+    follower2.style.transform = `translate(${centerX - followerRadius}px, ${centerY - followerRadius}px)`;
+  }
+
+  // Call initialization when page loads
+  //window.addEventListener('load', initializeFollowerPosition);
+  initializeFollowerPosition();
+
+  // Function to create circular binary pattern
+  function createCircularBinary() {
+    follower2.innerHTML = ''; // Clear existing content
+    const numDigits = 15; // Number of binary digits around the circle
+    const radius = 10; // Radius of the circle
+
+    for (let i = 0; i < numDigits; i++) {
+      const digit = document.createElement('div');
+      digit.className = 'binary-digit2';
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+      // Calculate position around the circle
+      const angle = (i / numDigits) * 2 * Math.PI;
+      const x = Math.cos(angle) * radius + 11; // Adjusted center offset for better centering
+      const y = Math.sin(angle) * radius + 11; // Adjusted center offset for better centering
+
+      digit.style.left = x + 'px';
+      digit.style.top = y + 'px';
+
+      follower2.appendChild(digit);
+    }
+  }
+
+  // Update binary display constantly
+  function updateBinaryDisplay() {
+    const digits = follower2.querySelectorAll('.binary-digit2');
+    digits.forEach(digit => {
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+    });
+  }
+
+  // Function to create binary border around constraint area
+  function createBinaryBorder() {
+    const numBorderDigits = 50; // Number of binary digits around the border
+    const areaWidth = 150;
+    const areaHeight = 100;
+
+    for (let i = 0; i < numBorderDigits; i++) {
+      const digit = document.createElement('div');
+      digit.className = 'border-digit2';
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+      // Calculate position around the ellipse perimeter
+      const angle = (i / numBorderDigits) * 2 * Math.PI;
+      const radiusX = (areaWidth + 5) / 2;
+      const radiusY = (areaHeight + 5) / 2;
+      const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+      const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+      digit.style.left = x + 'px';
+      digit.style.top = y + 'px';
+
+      constraintArea2.appendChild(digit);
+    }
+  }
+
+  function createBinaryBorder2() {
+    const numBorderDigits = 40; // Number of binary digits around the border
+    const areaWidth = 150;
+    const areaHeight = 100;
+
+    for (let i = 0; i < numBorderDigits; i++) {
+      const digit2 = document.createElement('div');
+      digit2.className = 'border-digit2';
+      digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+
+      // Calculate position around the ellipse perimeter
+      const angle = (i / numBorderDigits) * 2 * Math.PI;
+      const radiusX = areaWidth / 2;
+      const radiusY = areaHeight / 2;
+      const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+      const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+      digit2.style.left = x + 'px';
+      digit2.style.top = y + 'px';
+
+      constraintArea2.appendChild(digit2);
+    }
+  }
+
+  // Update border binary display
+  function updateBorderBinary() {
+    const borderDigits = constraintArea2.querySelectorAll('.border-digit2');
+    borderDigits.forEach(digit => {
+      digit.textContent = Math.random() > 0.5 ? '1' : '0';
+    });
+
+
+    const borderDigits2 =constraintArea2.querySelectorAll('.border-digit2');
+    borderDigits2.forEach(digit2 => {
+      digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+    });
+
+  }
+
+  // Initialize the circular patterns
+  createCircularBinary();
+  createBinaryBorder();
+  createBinaryBorder2();
+
+  // Start the binary animations
+  setInterval(updateBinaryDisplay, 100); // Update pupil every 100ms
+  setInterval(updateBorderBinary, 80); // Update border every 80ms for slightly different timing
+
+  document.addEventListener('mousemove', (event) => {
+    const rect = constraintArea2.getBoundingClientRect();
+    const followerRadius = 15;
+
+    // Calculate center and dimensions of the oval/circle
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const radiusX = (rect.width / 2) - followerRadius;
+    const radiusY = (rect.height / 2) - followerRadius;
+
+    // Get mouse position relative to center
+    let x = event.clientX - centerX;
+    let y = event.clientY - centerY;
+
+    // Check if point is outside the ellipse and constrain it
+    const ellipseEquation = (x * x) / (radiusX * radiusX) + (y * y) / (radiusY * radiusY);
+
+    if (ellipseEquation > 1) {
+      // Point is outside ellipse, project it onto the ellipse boundary
+      const angle = Math.atan2(y, x);
+      x = radiusX * Math.cos(angle);
+      y = radiusY * Math.sin(angle);
+    }
+
+    // Convert back to absolute coordinates
+    const finalX = centerX + x;
+    const finalY = centerY + y;
+
+    follower2.style.transform = `translate(${finalX - followerRadius}px, ${finalY - followerRadius}px)`;
+  });
+</script> <!-- eye two-->
+    
+</html>

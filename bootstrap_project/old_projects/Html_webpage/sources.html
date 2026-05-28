@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- NOTE MUST REMOVE  -->
+  <!--<meta http-equiv="refresh" content=1 />
+  <!-- THIS REFRESHES THE PAGE EVERY SECOND  -->
+
+  <title>Future of Technology</title>
+
+  <link rel="stylesheet" href="external_css.css">
+  <style>
+    header {
+      background-image: url("img/tech_background.jpg");
+    }
+  </style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Sources</h1>
+  </header>
+
+
+
+  <!-- Container for flexible grid (content) -->
+  <container>
+
+    <aside>
+      <p>
+        <nav>
+          <a href="https://sites.google.com/prexie.org/u-1f44c/home"><span style="color: white">https://sites.google.com/prexie.org/u-1f44c/home</span></a>
+
+        </nav>
+      </p>
+      <p>
+        Note: The link above leads to an old assignment of mine that was used for this project. All the information from this webpage was taken from my old project and used here.
+      </p>
+
+      <hr> <!-- horizotal rule for spacer-->
+    </aside>
+
+
+    <aside2>
+      <nav>
+        <a href="home.html"><span style="color: white">Home</span></a>
+        <a href="sources.html"><span style="color: white">Sources</span></a>
+      </nav>
+    </aside2>
+
+
+  </container>
+
+
+
+
+  <footer>
+
+
+
+
+    <div class="constraint-area">
+      <div class="follower"></div>
+    </div>
+
+    <script>
+      const follower = document.querySelector('.follower');
+      const constraintArea = document.querySelector('.constraint-area');
+
+
+
+      // Initialize follower position in the center of the constraint area
+      function initializeFollowerPosition() {
+        const followerRadius = 15;
+
+        follower.style.left = '50%';
+        follower.style.top = '50%';
+      }
+
+      // Call initialization when page loads
+      window.addEventListener('load', initializeFollowerPosition);
+      initializeFollowerPosition();
+
+      // Function to create circular binary pattern
+      function createCircularBinary() {
+        follower.innerHTML = ''; // Clear existing content
+        const numDigits = 15; // Number of binary digits around the circle
+        const radius = 10; // Radius of the circle
+
+        for (let i = 0; i < numDigits; i++) {
+          const digit = document.createElement('div');
+          digit.className = 'binary-digit';
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+          // Calculate position around the circle
+          const angle = (i / numDigits) * 2 * Math.PI;
+          const x = Math.cos(angle) * radius + 11; // Adjusted center offset for better centering
+          const y = Math.sin(angle) * radius + 11; // Adjusted center offset for better centering
+
+          digit.style.left = x + 'px';
+          digit.style.top = y + 'px';
+
+          follower.appendChild(digit);
+        }
+      }
+
+      // Update binary display constantly
+      function updateBinaryDisplay() {
+        const digits = follower.querySelectorAll('.binary-digit');
+        digits.forEach(digit => {
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+        });
+      }
+
+      // Function to create binary border around constraint area
+      function createBinaryBorder() {
+        const numBorderDigits = 50; // Number of binary digits around the border
+        const areaWidth = 150;
+        const areaHeight = 100;
+
+        for (let i = 0; i < numBorderDigits; i++) {
+          const digit = document.createElement('div');
+          digit.className = 'border-digit';
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+          // Calculate position around the ellipse perimeter
+          const angle = (i / numBorderDigits) * 2 * Math.PI;
+          const radiusX = (areaWidth + 5) / 2;
+          const radiusY = (areaHeight + 5) / 2;
+          const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+          const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+          digit.style.left = x + 'px';
+          digit.style.top = y + 'px';
+
+          constraintArea.appendChild(digit);
+        }
+      }
+
+      function createBinaryBorder2() {
+        const numBorderDigits = 40; // Number of binary digits around the border
+        const areaWidth = 150;
+        const areaHeight = 100;
+
+        for (let i = 0; i < numBorderDigits; i++) {
+          const digit2 = document.createElement('div');
+          digit2.className = 'border-digit';
+          digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+
+          // Calculate position around the ellipse perimeter
+          const angle = (i / numBorderDigits) * 2 * Math.PI;
+          const radiusX = areaWidth / 2;
+          const radiusY = areaHeight / 2;
+          const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+          const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+          digit2.style.left = x + 'px';
+          digit2.style.top = y + 'px';
+
+          constraintArea.appendChild(digit2);
+        }
+      }
+
+      // Update border binary display
+      function updateBorderBinary() {
+        const borderDigits = constraintArea.querySelectorAll('.border-digit');
+        borderDigits.forEach(digit => {
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+        });
+
+
+        const borderDigits2 =constraintArea.querySelectorAll('.border-digit');
+        borderDigits2.forEach(digit2 => {
+          digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+        });
+
+      }
+
+      // Initialize the circular patterns
+      createCircularBinary();
+      createBinaryBorder();
+      createBinaryBorder2();
+
+      // Start the binary animations
+      setInterval(updateBinaryDisplay, 100); // Update pupil every 100ms
+      setInterval(updateBorderBinary, 80); // Update border every 80ms for slightly different timing
+
+      document.addEventListener('mousemove', (event) => {
+        const rect = constraintArea.getBoundingClientRect();
+        const followerRadius = 15;
+
+        // Calculate center and dimensions of the oval/circle
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const radiusX = (rect.width / 2) - followerRadius;
+        const radiusY = (rect.height / 2) - followerRadius;
+
+        // Get mouse position relative to center
+        let x = event.clientX - centerX;
+        let y = event.clientY - centerY;
+
+        // Check if point is outside the ellipse and constrain it
+        const ellipseEquation = (x * x) / (radiusX * radiusX) + (y * y) / (radiusY * radiusY);
+
+        if (ellipseEquation > 1) {
+          // Point is outside ellipse, project it onto the ellipse boundary
+          const angle = Math.atan2(y, x);
+          x = radiusX * Math.cos(angle);
+          y = radiusY * Math.sin(angle);
+        }
+
+        // Convert to percentage relative to parent
+        const percentX = 50 + (x / rect.width * 100);
+        const percentY = 50 + (y / rect.height * 100);
+
+        follower.style.left = percentX + '%';
+        follower.style.top = percentY + '%';
+      });
+    </script>
+
+
+
+    <div class="constraint-area2">
+      <div class="follower2"></div>
+    </div>
+
+
+    <script>
+      const follower2 = document.querySelector('.follower2');
+      const constraintArea2 = document.querySelector('.constraint-area2');
+
+
+
+      // Initialize follower position in the center of the constraint area
+      function initializeFollowerPosition2() {
+        const followerRadius = 15;
+
+        follower2.style.left = '50%';
+        follower2.style.top = '50%';
+      }
+
+      // Call initialization when page loads
+      window.addEventListener('load', initializeFollowerPosition2);
+      initializeFollowerPosition2();
+
+      // Function to create circular binary pattern
+      function createCircularBinary2() {
+        follower2.innerHTML = ''; // Clear existing content
+        const numDigits = 15; // Number of binary digits around the circle
+        const radius = 10; // Radius of the circle
+
+        for (let i = 0; i < numDigits; i++) {
+          const digit = document.createElement('div');
+          digit.className = 'binary-digit2';
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+          // Calculate position around the circle
+          const angle = (i / numDigits) * 2 * Math.PI;
+          const x = Math.cos(angle) * radius + 11; // Adjusted center offset for better centering
+          const y = Math.sin(angle) * radius + 11; // Adjusted center offset for better centering
+
+          digit.style.left = x + 'px';
+          digit.style.top = y + 'px';
+
+          follower2.appendChild(digit);
+        }
+      }
+
+      // Update binary display constantly
+      function updateBinaryDisplay2() {
+        const digits = follower2.querySelectorAll('.binary-digit2');
+        digits.forEach(digit => {
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+        });
+      }
+
+      // Function to create binary border around constraint area
+      function createBinaryBorder2A() {
+        const numBorderDigits = 50; // Number of binary digits around the border
+        const areaWidth = 150;
+        const areaHeight = 100;
+
+        for (let i = 0; i < numBorderDigits; i++) {
+          const digit = document.createElement('div');
+          digit.className = 'border-digit2';
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+          // Calculate position around the ellipse perimeter
+          const angle = (i / numBorderDigits) * 2 * Math.PI;
+          const radiusX = (areaWidth + 5) / 2;
+          const radiusY = (areaHeight + 5) / 2;
+          const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+          const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+          digit.style.left = x + 'px';
+          digit.style.top = y + 'px';
+
+          constraintArea2.appendChild(digit);
+        }
+      }
+
+      function createBinaryBorder2B() {
+        const numBorderDigits = 40; // Number of binary digits around the border
+        const areaWidth = 150;
+        const areaHeight = 100;
+
+        for (let i = 0; i < numBorderDigits; i++) {
+          const digit2 = document.createElement('div');
+          digit2.className = 'border-digit2';
+          digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+
+          // Calculate position around the ellipse perimeter
+          const angle = (i / numBorderDigits) * 2 * Math.PI;
+          const radiusX = areaWidth / 2;
+          const radiusY = areaHeight / 2;
+          const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+          const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+          digit2.style.left = x + 'px';
+          digit2.style.top = y + 'px';
+
+          constraintArea2.appendChild(digit2);
+        }
+      }
+
+      // Update border binary display
+      function updateBorderBinary2() {
+        const borderDigits = constraintArea2.querySelectorAll('.border-digit2');
+        borderDigits.forEach(digit => {
+          digit.textContent = Math.random() > 0.5 ? '1' : '0';
+        });
+
+
+        const borderDigits2 =constraintArea2.querySelectorAll('.border-digit2');
+        borderDigits2.forEach(digit2 => {
+          digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+        });
+
+      }
+
+      // Initialize the circular patterns
+      createCircularBinary2();
+      createBinaryBorder2A();
+      createBinaryBorder2B();
+
+      // Start the binary animations
+      setInterval(updateBinaryDisplay2, 100); // Update pupil every 100ms
+      setInterval(updateBorderBinary2, 80); // Update border every 80ms for slightly different timing
+
+      document.addEventListener('mousemove', (event) => {
+        const rect = constraintArea2.getBoundingClientRect();
+        const followerRadius = 15;
+
+        // Calculate center and dimensions of the oval/circle
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const radiusX = (rect.width / 2) - followerRadius;
+        const radiusY = (rect.height / 2) - followerRadius;
+
+        // Get mouse position relative to center
+        let x = event.clientX - centerX;
+        let y = event.clientY - centerY;
+
+        // Check if point is outside the ellipse and constrain it
+        const ellipseEquation = (x * x) / (radiusX * radiusX) + (y * y) / (radiusY * radiusY);
+
+        if (ellipseEquation > 1) {
+          // Point is outside ellipse, project it onto the ellipse boundary
+          const angle = Math.atan2(y, x);
+          x = radiusX * Math.cos(angle);
+          y = radiusY * Math.sin(angle);
+        }
+
+        // Convert to percentage relative to parent
+        const percentX = 50 + (x / rect.width * 100);
+        const percentY = 50 + (y / rect.height * 100);
+
+        follower2.style.left = percentX + '%';
+        follower2.style.top = percentY + '%';
+      });
+    </script>
+
+
+  </footer>
+
+
+
+
+  <nav>
+    <a href="Humanoid_robots.html"><span style="color: #6fffff">Humanoid Robots</span></a>
+    <a href="quantum_computing.html"><span style="color: #ffff00">Quantum Computing</span></a>
+    <!--
+    <a href="/html_webpage_project/virtual_reality.html"><span style="color: #ffbae5">Virtual Reality</span></a>-->
+  </nav>
+
+  <br>
+  <hr>
+  <p style="text-align: center">
+  <nav>
+        <p>
+          Contact me at:
+        </p>
+      <a href="mailto:lwinw27@prexie.org">lwinw27@prexie.org</a>
+      </nav>
+    </p>
+
+  </p>
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,305 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.11.2/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.11.2/core.js"></script>
+
+    <py-script>
+        from pyscript import document, window
+        import threading
+        import asyncio
+        from pyodide.ffi import create_proxy
+        import time
+        import webbrowser
+
+        def handle_keydown(event):
+            # This function handles the "Enter" logic and redirects
+            if event.key == "Enter":
+                selection = event.target.value.lower().strip()
+                event.target.value = "" # Clear the input box
+                
+                
+                # Visual feedback
+                feedback = document.getElementById("hi18")
+                feedback.innerHTML = ""
+
+                # Direct redirection (Bypasses popup blockers)
+                if selection == "bootstrap":
+                    window.open("bootstrap_project/Future_of_Technology.html", "_blank")
+
+                elif selection in ["html_css", "html", "css"]:
+                    window.open("bootstrap_project/old_projects/Html_webpage/home.html", "_blank")
+
+                elif selection == "math":
+                    window.open("https://studio.code.org/projects/applab/c408be78-6114-43be-89c2-289b9a55439d", "_blank")
+
+                elif selection == "quiz":
+                    window.open("quiz/index.html", "_blank")
+
+                elif selection in ["store", "computer store", "computer"]:
+                    window.open("bootstrap_project/old_projects/computer_store/computer_store.html", "_blank")
+                    
+                elif selection == "wordpress":
+                    window.open("https://my011101010101111101110011011101010110001101101011.wordpress.com", "_blank")
+
+                elif selection in["google sites", "google", "sites"]:
+                    window.open("https://sites.google.com/prexie.org/u-1f44c/home", "_blank")
+
+                elif selection in ["student picker", "student", "picker"]:
+                    window.open("https://studio.code.org/projects/applab/bd5d36a0-59a4-43e9-9178-d489bbfa092a", "_blank")
+
+                elif selection in ["test command", "test", "secret", "command"]:
+                    feedback.innerHTML = "01101001 01101101 01100001 01100111 01101001 01101110 01100101 00100000 01110111 01100001 01110011 01110100 01101001 01101110 01100111 00100000 01110100 01101001 01101101 01100101 00100000 01101100 01101111 01101100 00101110 00100000 01001110 01101111 01110111 00100000 01111001 01101111 01110101 00100000 01110011 01101000 01101111 01110101 01101100 01100100 00100000 01110100 01110010 01111001 00100000 01110100 01101111 00100000 01100110 01101001 01101110 01100100 00100000 01110011 01101111 01101101 01100101 00100000 01101111 01100110 00100000 01101101 01111001 00100000 01101111 01110100 01101000 01100101 01110010 00101100 00100000 01101101 01110101 01100011 01101000 00100000 01101101 01101111 01110010 01100101 00100000 01101000 01101001 01100100 01100100 01100101 01101110 00100000 01110011 01100101 01100011 01110010 01100101 01110100 01110011 00101110 00100000 01001100 01101001 01101011 01100101 00100000 01101001 01101110 00100000 01110100 01101000 01100101 00100000 01110101 01110010 01101100 00100000 01101111 01110010 00100000 01100011 01101111 01100100 01100101 00101110"
+
+                else:
+                    feedback.innerHTML = f"'{selection}' is not a recognized project."
+
+                
+        
+        def typewriter(text, delay, id, type=0):
+            if type == 0:
+                for char in text:
+                    document.getElementById(id).innerHTML += char
+                    time.sleep(delay) if delay > 0 else None
+            else:
+
+                for line in text.split("\n"):
+                    for char in line:
+                        if char == " ":
+                            # Wrap the space in a non-breaking space
+                            document.getElementById(id).innerHTML += '&nbsp;'
+                        elif char == ".":
+                            # Wrap the period in a black span
+                            document.getElementById(id).innerHTML += '<span style="color: black;">.</span>'
+                        else:
+                            # Wrap others in a span with no color (default)
+                            document.getElementById(id).innerHTML += f'<span>{char}</span>'
+                        
+                        
+                    document.getElementById(id).innerHTML += "<br>"
+                    time.sleep(delay) if delay > 0 else None
+
+        
+
+        def handle_initial_question(event):
+            """Handles the first input (Yes/No)"""
+            if event.key == "Enter":
+                user_input = event.target
+                answer = user_input.value.lower().strip()
+                
+                # --- NEW CODE TO REMOVE CURSOR ---
+                # Select the container and create the replacement text
+                container = document.getElementById("hi1")
+                static_span = document.createElement("span")
+                static_span.innerText = user_input.value + "\n"
+                
+                # Match your terminal style
+                static_span.style.color = "#4AF262"
+                static_span.style.fontFamily = "monospace"
+                
+                # Swap the active input box for the static text
+                container.replaceChild(static_span, user_input)
+                # ---------------------------------
+
+                should_skip = (answer == "n" or answer == "no")
+
+                if not input_done.done():
+                    input_done.set_result(should_skip)
+
+
+            
+        async def hello():
+            await asyncio.sleep(.5)
+            document.getElementById("hi16").innerHTML = "<br><br>"        
+                    
+
+
+        async def main():
+            hi = 1
+            if hi ==1:
+                d1 = .005
+                d2 = 0.4
+            else:
+                d1 = 0.0005
+                d2 = 0.001
+
+            typewriter("Have you used this before? (y/n): ", d1, "hi1")
+            document.getElementById("hi1").innerHTML += '<input style="color: #4AF262; background-color: black; border: none; outline: none; font-family: monospace; width: 50px;" type="text" id="initial_input" autofocus required>'
+            
+            document.getElementById("initial_input").addEventListener("keydown", create_proxy(handle_initial_question))
+
+            # 3. PAUSE HERE until input_done.set_result() is called
+            should_skip = await input_done 
+            document.getElementById("hi2").focus();
+
+            if should_skip:
+                typewriter("System Booting", d1, "hi2")
+                typewriter("...", d2, "hi2")
+
+                document.getElementById("hi3").innerHTML = "PS C:\\Users\\wakee> "
+                time.sleep(.5)
+                typewriter('cd "C:\\D drive\\chs web design\\final_project\\final_project.py"', d1, "hi3")
+
+                typewriter("loading", d1, "hi4")
+                typewriter("..", d2, "hi4")
+
+                typewriter(welcome_banner, 0.005, "hi5", 1)
+
+                typewriter("Please enter a command: ", d1, "hi6")
+                time.sleep(.5)
+                typewriter("ls", d1, "hi6")
+
+                typewriter("Grabbing list of commands", d1, "hi7")
+                typewriter("...", d2, "hi7")
+
+                document.getElementById("hi7").innerHTML += "<br><br>"
+
+                typewriter("Bootstrap", 0.01, "hi8")
+                typewriter("Html_CSS", 0.01, "hi9")
+                typewriter("Math", 0.01, "hi10")
+                typewriter("Quiz", 0.01, "hi11")
+                typewriter("Computer Store", 0.01, "hi12")
+                typewriter("Wordpress", 0.01, "hi13")
+                typewriter("Google Sites", 0.01, "hi14")
+                typewriter("Student Picker", 0.01, "hi15")
+
+                typewriter("test command", 0.01, "hi16") #for secret
+
+                document.getElementById("hi16").innerHTML += "<br><br>"
+
+                # 2. Start the secret (the code immediately moves to the next line so delay wont effect rest of program)
+                asyncio.create_task(hello())
+
+
+                typewriter("Type the project name you would like to see and press enter to be rerouted: ", d1, "hi17")
+
+                document.getElementById("hi17").innerHTML += '<input style="color: #4AF262; background-color: black; border: none; outline: none; font-family: monospace;" type="text" class="user_select"  id="us" autofocus required>'
+
+
+            else:
+                document.getElementById("hi2").innerHTML = "System Booting..."
+
+                document.getElementById("hi3").innerHTML = 'PS C:\\Users\\wakee> cd "C:\\chs_web_design\\final_project\\final_project.py"'
+
+                document.getElementById("hi4").innerHTML = "loading.."
+
+                typewriter(welcome_banner, 0, "hi5", 1)
+
+                document.getElementById("hi6").innerHTML = "Please enter a command: ls"
+
+                document.getElementById("hi7").innerHTML = "Grabbing list...<br><br>"
+
+
+                document.getElementById("hi8").innerHTML = "bootstrap"
+                document.getElementById("hi9").innerHTML = "Html_CSS"
+                document.getElementById("hi10").innerHTML = "math"
+                document.getElementById("hi11").innerHTML = "quiz"
+                document.getElementById("hi12").innerHTML = "computer store" 
+                document.getElementById("hi13").innerHTML = "wordpress"
+                document.getElementById("hi14").innerHTML = "google sites"
+                document.getElementById("hi15").innerHTML = "Student Picker"
+
+
+                document.getElementById("hi16").innerHTML += "<br><br>"
+
+                typewriter("Type the project name you would like to see and press enter to be rerouted: ", d1, "hi17")
+                document.getElementById("hi17").innerHTML += '<input style="color: #4AF262; background-color: black; border: none; outline: none; font-family: monospace;" type="text" class="user_select"  id="us" autofocus required>'
+
+
+            #makes it so that the cursor is placed in the new input box
+            document.getElementById("us").focus();
+
+            # attach the enter key listener
+            # use a proxy to bridge Python and JavaScript events
+            keypress_proxy = create_proxy(handle_keydown)
+            document.getElementById("us").addEventListener("keydown", keypress_proxy)
+
+
+
+
+ 
+
+
+        # The 'r' before the quotes handles backslashes correctly for ASCII art           
+        welcome_banner = r"""
+        __        _______ _     ____ ___  __  __ _____ 
+        \ \      / / ____| |   / ___/ _ \|  \/  | ____|
+         \ \ /\ / /|  _| | |  | |  | | | | |\/| |  _|  
+          \ V  V / | |___| |__| |__| |_| | |  | | |___ 
+           \_/\_/  |_____|_____\____\___/|_|  |_|_____|
+        """
+        should_skip = False
+        
+        # Create a Future object to act as a "signal"
+        input_done = asyncio.Future()
+        # Start the async loop
+        asyncio.ensure_future(main())
+        
+        
+    </py-script>
+
+
+</head>
+<body style ="background-color: black; color: #4AF262; font-family: monospace;">
+    <div id="hi1">
+        
+    </div>
+    <div id="hi2">
+        
+    </div>
+    <div id="hi3">
+        
+    </div>
+    <div id="hi4">
+        
+    </div>
+    <div id="hi5">
+        
+    </div>
+    <div id="hi6">
+        
+    </div>
+    <div id="hi7">
+        
+    </div>
+    <div id="hi8">
+        
+    </div>
+    <div id="hi9">
+        
+    </div>
+    <div id="hi10">
+        
+    </div>
+    <div id="hi11">
+        
+    </div>
+    <div id="hi12">
+        
+    </div>
+    <div id="hi13">
+        
+    </div>
+    <div id="hi14">
+        
+    </div>
+    <div id="hi15">
+        
+    </div>
+    <div id="hi16">
+        
+    </div>
+    <div id="hi17">
+        
+    </div>
+    <div id="hi18">
+        
+    </div>
+    <div id="hi19">
+        
+    </div>
+    <div id="hi20">
+        
+    </div>
+</body>

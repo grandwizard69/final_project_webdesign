@@ -1,0 +1,1566 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      
+      /*
+      .nav>li>a.active,
+      .nav>li>a:hover,
+      .nav>li>a:focus {
+        background-color: #f4511e !important;
+      }
+      */
+      
+      /*
+      .nav-pill>li>a.active,
+      .nav-pill>li>a:hover,
+      .nav-pill>li>a:focus {
+        background-color: #f4511e !important;
+      }
+      */
+      
+      .card-header>a.hover{
+        background-color: #f4511e !important;
+      }
+      
+    
+      .slider {
+        overflow: hidden; /* Hides the duplicated content until it slides into view */
+        position: relative;
+        width: 400px;
+      }
+
+      .slide-track {
+        display: flex;
+        width: 300px; /* Ensure track is wide enough for all content */
+        animation: scroll linear infinite;
+        animation-duration: 18s; /* Adjust duration to control speed */
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          /* Move the width of the original content */
+          transform: translateX(
+            -1200px
+            /*calc(-90px * 3)*/
+          ); /* (Item width * number of items) */
+        }
+      }
+
+      body {
+        margin: auto;
+        max-width: 1920px;
+        font:
+          400 15px Lato,
+          sans-serif;
+        line-height: 1.8;
+        color: #818181;
+      }
+      h2 {
+        font-size: 24px;
+        text-transform: uppercase;
+        color: #303030;
+        font-weight: 600;
+        margin-bottom: 30px;
+      }
+      h4 {
+        font-size: 19px;
+        line-height: 1.375em;
+        color: #303030;
+        font-weight: 400;
+        margin-bottom: 30px;
+      }
+      .jumbotron {
+        background-image: url("img/tech_background.jpg");
+        padding: 100px 25px;
+        font-family: PlayFair Display;
+        color: black;
+        text-shadow: 1px 2px 20px black;
+      }
+      .container-fluid {
+        padding: 60px 50px;
+      }
+      .bg-grey {
+        background-color: #f6f6f6;
+      }
+      .logo-small {
+        color: #f4511e;
+        font-size: 50px;
+      }
+      .logo {
+        color: #f4511e;
+        font-size: 200px;
+      }
+      .thumbnail {
+        padding: 0 0 15px 0;
+        border: none;
+        border-radius: 0;
+      }
+      .thumbnail img {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 10px;
+      }
+      .carousel-control.right,
+      .carousel-control.left {
+        background-image: none;
+        color: #f4511e;
+      }
+      .carousel-indicators li {
+        border-color: #f4511e;
+      }
+      .carousel-indicators li.active {
+        background-color: #f4511e;
+      }
+      .item h4 {
+        font-size: 19px;
+        line-height: 1.375em;
+        font-weight: 400;
+        font-style: italic;
+        margin: 70px 0;
+      }
+      .item span {
+        font-style: normal;
+      }
+      .panel {
+        border: 1px solid #f4511e;
+        border-radius: 0 !important;
+        transition: box-shadow 0.5s;
+      }
+      .panel:hover {
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, 0.2);
+      }
+      .panel-footer .btn:hover {
+        border: 1px solid #f4511e;
+        background-color: #fff !important;
+        color: #f4511e;
+      }
+      .panel-heading {
+        color: #fff !important;
+        background-color: #f4511e !important;
+        padding: 25px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      .panel-footer {
+        background-color: white !important;
+      }
+      hr {
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        border-top: 3px double black !important;
+        color: black;
+        overflow: visible;
+        text-align: center;
+        height: 5px;
+      }
+
+      hr::after {
+        background: white;
+        content: "§";
+        padding: 0 4px;
+        position: relative;
+        top: -13px;
+      }
+      .panel-footer h3 {
+        font-size: 32px;
+      }
+      .panel-footer h4 {
+        color: #aaa;
+        font-size: 14px;
+      }
+      .panel-footer .btn {
+        margin: 15px 0;
+        background-color: #f4511e;
+        color: #fff;
+      }
+      .navbar {
+        margin-bottom: 0;
+        background-color: #f4511e;
+        z-index: 9999;
+        border: 0;
+        font-size: 12px !important;
+        line-height: 1.42857143 !important;
+        letter-spacing: 4px;
+        border-radius: 0;
+        font-family: Montserrat, sans-serif;
+      }
+      .navbar li a,
+      .navbar .navbar-brand {
+        color: #fff !important;
+      }
+      .navbar-nav li a:hover,
+      .navbar-nav li.active a {
+        color: #f4511e !important;
+        background-color: #fff !important;
+      }
+      .navbar-default .navbar-toggle {
+        border-color: transparent;
+        color: #fff !important;
+      }
+      footer .glyphicon {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #f4511e;
+      }
+
+      @media screen and (max-width: 768px) {
+        .col-sm-4 {
+          text-align: center;
+          margin: 25px 0;
+        }
+        .btn-lg {
+          width: 100%;
+          margin-bottom: 35px;
+        }
+      }
+      @media screen and (max-width: 1000px) {
+        .logo {
+          font-size: 150px;
+        }
+      }
+
+      h2 {
+        color: #f4511e;
+        text-shadow: 1px 2px 2px #2242a5;
+      }
+
+      h4 {
+        color: #243e9f;
+        text-shadow: 0px 0px 3px #5cc9c9;
+      }
+      p {
+        color: black;
+      }
+
+      .constraint-area {
+        position: absolute;
+        top: 50%;
+        left: 35%;
+        width: 150px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;                            
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .constraint-area2 {
+        position: absolute;
+        top: 50%;
+        left: 65%;
+        width: 150px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;                            
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .border-digit {
+        position: absolute;
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        color: #008000;
+        font-weight: bold;
+        width: 10px;
+        height: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .border-digit2 {
+        position: absolute;
+        font-family: 'Courier New', monospace;
+        font-size: 10px;
+        color: #008000;
+        font-weight: bold;
+        width: 10px;
+        height: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+
+      .follower {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        transform: translate(-50%, -50%); /* Center the element on the cursor */
+        pointer-events: none; /* Allows mouse events to pass through */
+        transition: transform 0.3s; /* Add a smooth trailing effect */
+        font-family: 'Courier New', monospace;
+        font-size: 8px;
+        color: black;
+        font-weight: bold;
+        overflow: hidden;
+      }
+
+      .follower2 {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        transform: translate(-50%, -50%); /* Center the element on the cursor */
+        pointer-events: none; /* Allows mouse events to pass through */
+        transition: transform 0.3s; /* Add a smooth trailing effect */
+        font-family: 'Courier New', monospace;
+        font-size: 8px;
+        color: black;
+        font-weight: bold;
+        overflow: hidden;
+      }
+
+      .binary-digit {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .binary-digit2 {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      footer {
+        padding: 20px;
+        text-align: center;
+        background: #434343;
+        min-height: 200px;
+        position: relative;
+      }
+
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      
+    </style>
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+  </head>
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#myNavbar"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#myPage"><img
+              src="img/black guy.jpg"
+              height="20"
+              width="40"
+              alt=""
+            /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about">About</a></li>
+            <li><a href="#Topics">Topics</a></li>
+            <li><a href="#humandoid_robots">Humanoid Robots</a></li>
+            <li><a href="#Quantum_Computing">Quantum Computing</a></li>
+            <li><a href="#Virtual_Reality">Virtual Reality</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron text-center">
+      <h1>Future of Technology</h1>
+      <p><i>Dive into the future of productivity and entertainment</i></p>
+    </div>
+
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+
+    <!-- Container (About Section) -->
+
+<div id="about" class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-8" style="text-align: left;" >
+      <h2 style="text-align: center;">About</h2>
+      <br />
+      <p>
+        There have been many MANY big tech advancements over the past few
+        years that will have the power to shape the future of the world as
+        we know it. From nano tech to 3d printed houses to brain-implanted
+        chips, the progression of technology has skyrocketed beyond what we
+        could have ever dreamed of.
+        <br />
+        <br />
+
+        And yet, some people don't even know the first thing about it.
+        That's what this is for. This website will not only teach you about
+        recent technology advancements, but will also show you just how far
+        we have come, and it'll do it in a fun way (or at least try to). So
+        go on and click on one of the topics below that interests you and be
+        amazed!
+      </p>
+    </div>
+    <div class="col-sm-4" style="margin-top: 100px;">
+      <div class="slider">
+        <div class="slider">
+          <div class="slide-track">
+            <div class="slide">
+              <img
+                src="img/vr_background.jpg"
+                height="200"
+                width="400"
+                alt=""
+              />
+            </div>
+            <div class="slide">
+              <img
+                src="img/robot_background.jpg"
+                height="200"
+                width="400"
+                alt=""
+              />
+            </div>
+
+            <div class="slide">
+              <img
+                src="img/Quantum Computing Background2.jpg"
+                height="200"
+                width="400" 
+                alt=""
+              />
+            </div>
+
+            <div class="slide">
+              <img
+                src="img/vr_background.jpg"
+                height="200"
+                width="400"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<hr />
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+    <!-- Container (Services Section) -->
+    <div id="Topics" class="container-fluid text-center bg-grey">
+      <h2>Topics/Introduction</h2>
+      <h4>What we will go over</h4>
+      <br />
+      <div class="row slideanim">
+        <div class="col-sm-4">
+          <img
+            src="img/robot_background.jpg"
+            height="100"
+            width="200"
+            alt=""
+          />
+          <h4><a  href="#humandoid_robots">Humanoid Robots</a></h4>
+          <p>
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <img
+            src="img/Quantum Computing Background2.jpg"
+            height="100"
+            width="200"
+            alt=""
+          />
+          <h4><li><a href="#Quantum_Computing">Quantum Computing</a></li></h4>
+        </div>
+        <div class="col-sm-4">
+          <img src="img/vr_background.jpg" height="100" width="200" alt="" />
+          <h4>
+            <li><a href="#Virtual_Reality">Virtual Reality</a></li></h4>
+        </div>
+      </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+    <hr />
+<div id="humandoid_robots" class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+      <img
+        style="margin-top: 100px; display: block"
+        src="img/robot_background.jpg"
+        height="334"
+        width="500"
+        alt=""
+      />
+    </div>
+    <div class="col-sm-8">
+      
+      <h2  style="text-align: center;">Humanoid Robots</h2>
+      <br />
+      <p style="display: block; padding-left: 100px">
+        <strong>Humanoid robots</strong> are something that has popped up more recently because of the advancements in the technology. A humanoid robot is just that, <strong>a human like robot</strong>. These robots currently can't fully replicate human movement but can get pretty close. Some have things like <strong>AI object recognition</strong> that can detect objects on the ground and what they are while others can do things like breakdance. 
+
+        <br><br>
+
+        With Future advantages like <strong>Greater Autonomy and Maintenance</strong>, <strong>Improved Mobility and Adaptability</strong>, <strong>Better Efficiency in Real World Tasks</strong>, <strong>Mass Commercialization</strong>, and <strong>Enhanced Human-Robot Interaction and Appearance</strong>, humanoid robots are poised to become more integrated into our daily lives.
+
+        <br><br>
+        
+        With time, humanoid robots will (and are) becoming more <strong>capable, functional</strong>, and <strong>applicable</strong> in real-world settings. With advances in <strong>autonomy</strong> (self-battery swapping, environmental sensing), improved <strong>balance and mobility</strong>, and better<strong> interaction design</strong>, they are starting to leave the lab more often.
+        
+        <br><br>
+        
+        However, many challenges remain, including <strong>energy constraints</strong>, <strong>cost</strong>, <strong>reliability</strong>, and <strong>ethical</strong> and <strong>regulatory</strong> issues. Whether humanoid robots become common in homes, workplaces, or public spaces depends on resolving these challenges while ensuring their development remains aligned with social values and safety.
+      </p>
+    </div>
+  </div>
+</div>
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+
+    <hr />
+    <div id="Quantum_Computing" class="container-fluid bg-grey">
+      <div class="row">
+        <div class="col-sm-8">
+          <h2 style="text-align: center;">Quantum Computing</h2>
+          <br>
+          <div id="accordion" >
+            <div class="card" style="border: double 3px black; padding-left: 5px";>
+              <div class="card-header" style=" border: double 3px black; margin-top: 5px; margin-right: 5px; margin-bottom: 5px">
+                <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                  <p style="font-size: 18px; margin-bottom: -3px "><strong>Quantum computing</strong></p>
+                </a>
+              </div>
+              <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body" style="padding-left: 5px; color: black">
+                  
+                  <strong>Quantum computing</strong> has been around for a decent bit of time but has been popping up much more recently because of researchers making multiple breakthroughs and developments that could reshape how we see the future.
+
+                  <br><br>
+
+                  Quantum computing works by utilizing <strong>qubits</strong>, which can exist in multiple states simultaneously and be linked through <strong>entanglement</strong>, unlike classical bits that are strictly 0 or 1. These properties make it so that quantum computers can process more possibilities in <strong>parallel</strong> and solve certain problems, such as <strong>factoring large numbers </strong>(Shor's algorithm) and <strong>searching datasets</strong> (Grover's algorithm), much faster than classical methods. 
+
+                  <br><br>
+
+                  However, despite their potential, quantum computers are in early development, facing challenges like <strong>environmental sensitivity</strong>, requiring <strong>extreme cooling</strong>, the need for <strong>quantum error correction</strong>, and <strong>scalability</strong> issues to reach millions of qubits for full potential. 
+
+                  <br><br>
+
+                  A demonstration of <strong>quantum supremacy</strong> was achieved by Google in 2019, solving a task <strong>much faster</strong> than classical supercomputers, though they are not yet ready for everyday use. While currently <strong>expensive</strong> and <strong>accessible primarily to institutions</strong>, cloud platforms are increasing remote access for wider experimentation, paving the way for future revolutions in medicine, materials science, AI, and climate modeling.
+                  
+                  <br><br>
+                  <strong>Key Aspects and Definitions:</strong>
+                  <ul>
+                    <li>
+                      <strong>Qubits:</strong> A qubit is similar to a regular bit(which can either be a 1 or a 0) however a qubit can be both a 1 and 0 thus allowing qubits to hold more information and perform computations in a more parallel way
+                    </li>
+                    
+                    <li>
+                      <strong>Superposition:</strong> A qubit can exist in multiple states (0 and 1) simultaneously until measured, enabling quantum computers to explore many possibilities concurrently. 
+                    </li>
+                    
+                    <li>
+                      <strong>Entanglement:</strong> The states of multiple qubits can be linked, meaning they are correlated even if physically separated. This correlated behavior can be exploited to perform computations more efficiently. 
+                    </li>
+                    
+                    <li>
+                      <strong>Quantum algorithms:</strong> Quantum computers use specialized algorithms, like Shor's algorithm for factoring large numbers, that can potentially solve problems faster than classical algorithms. 
+
+                    </li>
+                    
+                    <li>
+                      <strong>Scalability:</strong> The scalability of quantum computers will be one of the challenges that we will face.
+
+                    </li>
+                    
+                    <li>
+                      <strong>Quantum error correction:</strong> A set of techniques and algorithms made to identify and fix errors in quantum computers while also protecting the information stored in qubits from errors and decoherence.
+
+                    </li>
+                    
+                    <li>
+                      <strong>Decoherence:</strong>The process by which a quantum system loses its unique quantum properties, such as superposition and entanglement, by interacting with its environment 
+
+                    </li>
+                    
+                  </ul>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="card" style="border: double 3px black; padding-left: 5px";>
+              <div class="card-header" style=" border: double 3px black; margin-top: 5px; margin-right: 5px; margin-bottom: 5px">
+                <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo" onclick="hi()">
+                <p id ="marjorana_chip" style="font-size: 18px; margin-bottom: -2px "><strong>Majorana 1 chip   &lt;------ click to expand!</strong></p>
+              </a>
+              </div>
+              <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                <div class="card-body" style="padding-left: 5px; color: black">
+                  The <strong>Majorana 1</strong> is the world's first quantum processor based on <strong>topological qubits</strong>, a fundamentally new kind of qubit protected by the principles of topology rather than the more frail quantum states. It’s built using a <strong>topoconductor</strong> which is a hybrid material made from <strong>indium arsenide</strong> (semiconductor) and <strong>aluminum</strong> (superconductor) that achieves a new topological superconducting state.
+                  
+                  <br><br>
+                  
+                  This topological state of matter doesn't behave like ordinary solids, liquids, or gases. It enables <strong>Majorana zero modes(or MZM)</strong>, exotic quasiparticles theorized decades ago, that can encode quantum information in a way <strong>highly resistant</strong> to noise making it much less frail. In this setup, the information isn’t stored in a fragile superposition but rather in the <strong>presence</strong> or <strong>absence</strong> of an extra electron shared between two Majorana zero modes, making the data almost <strong>immune</strong> to disturbances.
+                  <br><br>
+                  <strong> How it works:</strong>
+                  <ul>
+                    <li>
+                      <strong>Qubit Structure:</strong> Each qubit is formed by configuring aluminum nanowires into an “H” shape, with four MZMs controlling one qubit. These H-shaped units can be tiled across the chip for scalability. 
+                    </li>
+                    <li>
+                      <strong>Measurement-Based Control:</strong> Rather than relying on precisely shaped analog pulses like many quantum systems, Majorana-1 uses digital control. You merely flip a switch to connect a quantum dot to the nanowire, and send simple measurement pulses meaning timing and shape don’t need to be perfect. 
+                    </li>
+                    <li>
+                      <strong>Reading the Qubit:</strong> When the quantum dot connects to the nanowire, the change in its electrical charge depends on the qubit’s parity. This change alters how microwaves reflect off the dot, letting us infer the qubit’s state.
+                    </li>
+                    <br>
+                  </ul>
+                  <strong>What's Next and What's Uncertain:</strong>
+                  <br>
+                  <ul>
+                    <li>
+                      <strong>Roadmap Toward Fault Tolerance:</strong> Microsoft envisions progressing from single qubits to multi qubit arrays capable of quantum error correction, ultimately leading to a fault tolerant quantum computer. 
+                    </li>
+                    <li>
+                      <strong>Skepticism Remains:</strong> While Microsoft’s claims are exciting, some in the scientific community are cautious. Independent validation of MZMs and measurable quantum advantage is still pending.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--<p>
+            <strong>Quantum computing</strong> has been around for a decent bit of time but has been popping up much more recently because of researchers making multiple breakthroughs and developments that could reshape how we see the future.
+
+            <br><br>
+            
+            Quantum computing works by utilizing <strong>qubits</strong>, which can exist in multiple states simultaneously and be linked through <strong>entanglement</strong>, unlike classical bits that are strictly 0 or 1. These properties make it so that quantum computers can process more possibilities in <strong>parallel</strong> and solve certain problems, such as <strong>factoring large numbers </strong>(Shor's algorithm) and <strong>searching datasets</strong> (Grover's algorithm), much faster than classical methods. 
+
+            <br><br>
+
+            However, despite their potential, quantum computers are in early development, facing challenges like <strong>environmental sensitivity</strong>, requiring <strong>extreme cooling</strong>, the need for <strong>quantum error correction</strong>, and <strong>scalability</strong> issues to reach millions of qubits for full potential. 
+
+            <br><br>
+
+            A demonstration of <strong>quantum supremacy</strong> was achieved by Google in 2019, solving a task <strong>much faster</strong> than classical supercomputers, though they are not yet ready for everyday use. While currently <strong>expensive</strong> and <strong>accessible primarily to institutions</strong>, cloud platforms are increasing remote access for wider experimentation, paving the way for future revolutions in medicine, materials science, AI, and climate modeling.
+
+            <br><br>
+
+            Lastly, the <strong>Majorana 1</strong> by Microsoft introduces a radical new route to quantum computing. By harnessing <strong>topological quantum states</strong> and <strong>adopting digital measurement-based control</strong>, it promises qubits that are more stable, scalable, and simpler to manage. However, while the <i>theoretical</i> foundation is compelling, real-world demonstration of large-scale, error-corrected operation is still future work.
+          </p>-->
+        </div>
+        <div class="col-sm-4">
+          <img
+            style="margin-top: 140px; margin-left: -10px"
+            src="img/Quantum Computing Background2.jpg"
+            height="354"
+            width="500"
+            alt=""
+          />
+        </div>
+        
+      </div>
+    </div>
+
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+
+<hr />
+<div id="Virtual_Reality" class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+      <img style="margin-top: 100px; margin-left: -5px"
+        src="img/vr_background.jpg"
+        height="304"
+        width="480"
+        alt=""
+      />
+    </div>
+    <div class="col-sm-8" >
+      <h2  style="text-align: center;">Virtual Reality</h2>
+      <br>
+      <ul class="nav nav-pills" style="color: #f4511e; justify-content: left">
+        <li class="active"><a data-toggle="pill" href="#1">What is Virtual Reality?</a></li>
+        <li><a data-toggle="pill" href="#2">How is VR used Today?</a></li>
+        <li><a data-toggle="pill" href="#3">Key Features</a></li>
+        <li><a data-toggle="pill" href="#4">Meta's Role in VR</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Meta’s Prototypes<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a data-toggle="pill" href="#5-1">Boba 3: Expanding Human Vision in VR</a></li>
+              <li><a data-toggle="pill" href="#5-2">Tiramisu: Ultra Realistic Visuals For Max Immersion</a></li>
+              <li><a data-toggle="pill" href="#5-3">What These Prototypes Could Mean for the Future</a></li>                        
+            </ul>
+        <li><a data-toggle="pill" href="#6">Summary</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="1" class="tab-pane fade in active">
+          <h2 style="text-align: center;">What is Virtual Reality?</h2>
+          
+          <p>Virtual Reality (VR) is a technology that immerses users in a virtual environment that can simulate real-world or entirely fictional experiences. Unlike traditional screens, VR surrounds your field of vision, making it feel as though you are “inside” the digital world. 
+            <br><br>
+            Headsets achieve this by using high-resolution displays, lenses, sensors, and motion tracking to respond to your movements. Turn your head left or right, and the view in VR shifts accordingly. This creates the illusion of presence, the feeling of actually being in a virtual space.
+          </p>
+        </div>
+
+
+        
+        <div id="2" class="tab-pane fade">
+          <h2 style="text-align: center;">How is Virtual Reality used Today?</h2>
+          <ul style="color: black">
+            <p>VR has expanded beyond gaming into many fields, including:
+            
+              <li>
+                <strong>Gaming and Entertainment:</strong> Fully immersive gameplay, cinematic experiences, and social VR hangouts.
+              </li>
+              <li>
+                <strong>Education and Training:</strong> Simulated classrooms, medical training, flight simulators, and job skill development.
+              </li>
+              <li>
+                <strong>Healthcare:</strong> Therapy for phobias, PTSD treatment, physical rehabilitation, and pain distraction.
+              </li>
+              <li>
+                <strong>Architecture and Design:</strong> Virtual walkthroughs of buildings and products before they’re built.
+              </li>
+              <li>
+                <strong>Social Interaction:</strong> Meeting friends in virtual spaces, attending concerts, or working in VR offices.
+              </li>
+            </p>
+          </ul>
+        </div>
+        
+        
+        
+        <div id="3" class="tab-pane fade">
+          <h2 style="text-align: center;">Key Features That Define VR Quality:</h2>
+          <ul style="color: black">
+              <li>
+                <strong>Field of View (FOV):</strong> A Wider FOV makes experiences more natural and less like “looking through binoculars.”
+              </li>
+              <li>
+                <strong>Resolution and Pixels Per Degree (PPD):</strong> Higher resolution reduces the “screen door effect,” where individual pixels are visible.
+              </li>
+              <li>
+                <strong>Brightness and Contrast:</strong> Important for clear visuals, especially when blending VR with real-world views (mixed reality).
+              </li>
+              <li>
+                <strong>Refresh Rate and Latency:</strong> Higher refresh rates can reduce motion sickness and make movements appear more fluid.
+              </li>
+              <li>
+                <strong>Comfort and Form Factor:</strong> A lighter, well-balanced headset makes VR more enjoyable for longer sessions.
+              </li>
+          </ul>
+        </div>
+
+
+        
+        <div id="4" class="tab-pane fade">
+          <h2 style="text-align: center;">Meta's Role in Virtual Reality</h2>
+          <ul style="color: black">
+            <p>
+              Meta (formerly Facebook) has become a leader in VR hardware and research. Its consumer line, Meta Quest, has introduced millions of people to virtual reality. But beyond consumer headsets, Meta is also working on experimental prototypes that explore the future of VR visuals and comfort.
+              <br><br>
+              The Meta Quest 3 is currently the flagship consumer headset, offering:
+
+                <li>
+                    Higher resolution than the Quest 2
+                </li>    
+              
+                <li>
+                    Improved mixed reality passthrough with full-color cameras
+                </li>   
+              
+                <li>
+                    Slimmer design with “pancake lenses” for comfort
+                </li>   
+              <br><br>
+              The Quest 3S, a more affordable version, keeps many of these features while offering a lower-priced entry into VR. 
+            </p>
+          </ul>
+        </div>
+        
+
+
+        
+        <div id="5-1" class="tab-pane fade">
+          <h2 style="text-align: center;">Boba 3: Expanding Human Vision in VR</h2>
+          
+          <ul style="color: black">
+              <li>
+                <strong>Field of View:</strong> Approximately 180° horizontal × 120° vertical (very close to the natural human field of vision).
+              </li>
+              <li>
+                <strong>Resolution:</strong> 4K × 4K per eye.
+              </li>
+              <li>
+                <strong>Pixels per Degree (PPD):</strong> Around 30, making visuals much clearer.
+              </li>
+              
+              <br>
+              
+              <li>
+                <strong>Goal:</strong> Maximize immersion by removing the feeling of looking through goggles.
+              </li>
+              <li>
+                <strong>Challenge: </strong> This headset demands huge amounts of power, is heavy, and is not yet practical for everyday use.
+              </li>
+          </ul>
+        </div>
+        
+        <div id="5-2" class="tab-pane fade">
+          <h2 style="text-align: center;">Tiramisu: Ultra Realistic Visuals For Max Immersion</h2>
+          <ul style="color: black">
+              <li>
+                <strong>Contrast:</strong> Approximately 3 times higher than Quest 3, for deep blacks and vivid highlights.
+              </li>
+              <li>
+                <strong>Brightness:</strong> Up to ~1,400 nits, which helps in mixed reality environments.
+              </li>
+              <li>
+                <strong>Angular Resolution:</strong> ~90 PPD (3–4× Quest 3), producing extremely crisp detail.
+              </li>
+              
+              <br>
+              
+              <li>
+                <strong>Goal:</strong> Reach “hyper realistic” VR visuals that could pass the “visual Turing test.”
+              </li>
+              <li>
+                <strong>Challenge: </strong> Narrower field of view, bulkier design, and high production costs make it unsuitable for consumers for now.
+              </li>
+          </ul>
+        </div>
+        
+        
+        <div id="5-3" class="tab-pane fade">
+          <h2 style="text-align: center;">What These Prototypes Could Mean for the Future</h2>
+          
+          <ul style="color: black">
+              <li>
+                <strong>Immersion Will Increase: </strong> A Wider FOV will make VR worlds feel almost indistinguishable from reality.
+              </li>
+              <li>
+                <strong>Visual Fidelity Will Skyrocket:</strong> Prototypes like Tiramisu show how VR could one day match human eye clarity.
+              </li>
+              <li>
+                <strong>Headsets Will Specialize:</strong> Some may focus on realism (like Tiramisu) while others focus on immersion and comfort (like Boba 3).
+              </li>              
+              <li>
+                <strong>Mixed Reality Will Evolve:</strong> Passthrough tech will improve, blending digital and physical worlds seamlessly.
+              </li>
+              <br>
+              <li>
+                <strong>Barriers Remain:</strong> High costs, power consumption, heat, and weight need to be solved before these features reach consumers
+              </li>
+          </ul>
+        </div>
+        
+        
+        <div id="6" class="tab-pane fade">
+          <h2 style="text-align: center;">Summary</h2>
+          
+          <p>Virtual reality is rapidly advancing, from today’s affordable consumer devices like the Meta Quest 3 to experimental prototypes that push the boundaries of human perception. 
+            <br><br>
+            While headsets like Boba 3 and Tiramisu are not yet ready for the public, they highlight the direction VR is heading: wider fields of view, sharper detail, brighter and more realistic visuals, and eventually, a seamless blend between the real and digital worlds. 
+            <br><br>
+            VR is not just for games, as it’s becoming a platform for work, creativity, education, and human connection. As technology improves, VR may evolve into an everyday tool as common as laptops or smartphones. </p>
+        </div>
+      </div>
+
+
+      
+      <!--<p>
+        <strong>Virtual reality</strong> (VR) is a technology that <strong>immerses</strong> users in a virtual environment that can simulate <strong>real world</strong> or <strong>entirely fictional</strong> experiences. Unlike traditional screens, VR surrounds your field of vision, making it feel as though you are “<i>inside</i>” the digital world. 
+
+        <br><br>
+        
+        VR headsets achieve this by using <strong>high resolution displays</strong>, <strong>lenses</strong>, <strong>sensors</strong>, and <strong>motion tracking</strong> to respond to your movements. Turn your head left or right, and the view in VR shifts accordingly. This creates the illusion of presence, the feeling of <i>actually being</i> in a virtual space.
+
+
+        <br><br>
+        
+        And with virtual reality rapidly advancing, from today’s affordable consumer devices like the <strong>Meta Quest 3s</strong> to experimental prototypes that push the boundaries of human perception like the <Strong>Boba 3 and Tiramisu</Strong>. While the Boba 3 and Tiramisu are not yet ready for the public, they highlight the direction VR is heading.
+        
+        <br><br>
+        
+        <strong>Wider fields of view</strong>, <strong>sharper detail</strong>, <strong>brighter</strong> and <strong>more realistic</strong> visuals, and eventually, a seamless blend between the <strong>real</strong> and <strong>digital</strong> worlds. VR is not just for games, as it’s becoming a platform for <strong>work, creativity, education,</strong> and <strong>human connection</strong>. As technology improves, VR may evolve into an everyday tool as common as laptops or smartphones. 
+
+      </p>-->
+    </div>
+  </div>
+</div>
+      <!--------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      ----------------------------------------------------------------------------------------------------------------------------------------------
+      --------------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+    
+    
+    <!-- YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS YOU ARE NOT SUPPOSED TO SEE THIS-->
+    <!-- GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY GO AWAY-->
+    
+
+<hr>
+
+    <div class="container-fluid bg-grey" style="text-align: center;">
+        
+          <p>
+            If you liked this website, check out some of my other chs web design projects below!
+          </p>
+            <br>
+            <br>
+
+            <!-- Trigger/Open The Modal -->            
+
+            ------><button id="myBtn">Click Here</button> &lt;------
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+
+                <table>
+                  <tr>
+                    <th>Name</th>
+                    <th>Made with</th>
+                    <th>Order of date made (decending)</th>
+                  </tr>
+                  <tr>
+                    <td><a href="https://docs.google.com/presentation/d/1Zp11uWOyjMjxiUfOQJxfU_XmI5AdkNpolXpT4XC3z8Q/edit?usp=sharing">Quantum Computing Slide Show</a></td>
+                    <td>Google Slides</td>
+                    <td>Made in Computer Aplications, 2024 Q3</td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://sites.google.com/prexie.org/u-1f44c">The Future of Technology</a></td>
+                    <td>Google Sites</td>
+                    <td>Made in CHS Web Design, 2025 Q2</td>
+                  </tr>
+                  <tr>
+                    <td><a href="old_projects/Html_webpage/home.html">Future of Technology</a></td>
+                    <td>Html</td>
+                    <td>Made in CHS Web Design, 2025 Q3-4</td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+          
+          
+    </div>
+
+
+
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+    <!-- HEY LOOK OVER HERE -->
+    <!-- LOOK AT THE LINE BELOW THIS-->
+    <!-- 👌 -->
+    <!-- HAHAAHHAHAHAAHHAHAAHHAHHAHAAHAHA MADE YOU LOOK HAHAHAHAHAHAHAHAAHHAHAHAAHHAHAA -->
+    <!-- YOU LOST THE GAME HAHHAHAHAHAHAHAAHA-->
+    <!-- now you have to find my other secrets ehehehheehehe-->
+    
+    
+    <footer style="display: block;">
+      <div class="constraint-area">
+      <div class="follower"></div>
+      </div>
+      <div class="constraint-area2">
+      <div class="follower2"></div>
+      </div>
+    </footer>
+    
+  
+  <!--script for binary eyes-->
+    <script>
+    
+const follower = document.querySelector('.follower');
+const constraintArea = document.querySelector('.constraint-area');
+
+
+
+// Initialize follower position in the center of the constraint area
+function initializeFollowerPosition() {
+  const followerRadius = 15;
+
+  follower.style.left = '50%';
+  follower.style.top = '50%';
+}
+
+// Call initialization when page loads
+window.addEventListener('load', initializeFollowerPosition);
+initializeFollowerPosition();
+
+// Function to create circular binary pattern
+function createCircularBinary() {
+  follower.innerHTML = ''; // Clear existing content
+  const numDigits = 15; // Number of binary digits around the circle
+  const radius = 10; // Radius of the circle
+
+  for (let i = 0; i < numDigits; i++) {
+    const digit = document.createElement('div');
+    digit.className = 'binary-digit';
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+    // Calculate position around the circle
+    const angle = (i / numDigits) * 2 * Math.PI;
+    const x = Math.cos(angle) * radius + 11; // Adjusted center offset for better centering
+    const y = Math.sin(angle) * radius + 11; // Adjusted center offset for better centering
+
+    digit.style.left = x + 'px';
+    digit.style.top = y + 'px';
+
+    follower.appendChild(digit);
+  }
+}
+
+// Update binary display constantly
+function updateBinaryDisplay() {
+  const digits = follower.querySelectorAll('.binary-digit');
+  digits.forEach(digit => {
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+  });
+}
+
+// Function to create binary border around constraint area
+function createBinaryBorder() {
+  const numBorderDigits = 50; // Number of binary digits around the border
+  const areaWidth = 150;
+  const areaHeight = 100;
+
+  for (let i = 0; i < numBorderDigits; i++) {
+    const digit = document.createElement('div');
+    digit.className = 'border-digit';
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+    // Calculate position around the ellipse perimeter
+    const angle = (i / numBorderDigits) * 2 * Math.PI;
+    const radiusX = (areaWidth + 5) / 2;
+    const radiusY = (areaHeight + 5) / 2;
+    const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+    const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+    digit.style.left = x + 'px';
+    digit.style.top = y + 'px';
+
+    constraintArea.appendChild(digit);
+  }
+}
+
+function createBinaryBorder2() {
+  const numBorderDigits = 40; // Number of binary digits around the border
+  const areaWidth = 150;
+  const areaHeight = 100;
+
+  for (let i = 0; i < numBorderDigits; i++) {
+    const digit2 = document.createElement('div');
+    digit2.className = 'border-digit';
+    digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+
+    // Calculate position around the ellipse perimeter
+    const angle = (i / numBorderDigits) * 2 * Math.PI;
+    const radiusX = areaWidth / 2;
+    const radiusY = areaHeight / 2;
+    const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+    const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+    digit2.style.left = x + 'px';
+    digit2.style.top = y + 'px';
+
+    constraintArea.appendChild(digit2);
+  }
+}
+
+// Update border binary display
+function updateBorderBinary() {
+  const borderDigits = constraintArea.querySelectorAll('.border-digit');
+  borderDigits.forEach(digit => {
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+  });
+
+
+  const borderDigits2 =constraintArea.querySelectorAll('.border-digit');
+  borderDigits2.forEach(digit2 => {
+    digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+  });
+
+}
+
+// Initialize the circular patterns
+createCircularBinary();
+createBinaryBorder();
+createBinaryBorder2();
+
+// Start the binary animations
+setInterval(updateBinaryDisplay, 100); // Update pupil every 100ms
+setInterval(updateBorderBinary, 80); // Update border every 80ms for slightly different timing
+
+document.addEventListener('mousemove', (event) => {
+  const rect = constraintArea.getBoundingClientRect();
+  const followerRadius = 15;
+
+  // Calculate center and dimensions of the oval/circle
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const radiusX = (rect.width / 2) - followerRadius;
+  const radiusY = (rect.height / 2) - followerRadius;
+
+  // Get mouse position relative to center
+  let x = event.clientX - centerX;
+  let y = event.clientY - centerY;
+
+  // Check if point is outside the ellipse and constrain it
+  const ellipseEquation = (x * x) / (radiusX * radiusX) + (y * y) / (radiusY * radiusY);
+
+  if (ellipseEquation > 1) {
+    // Point is outside ellipse, project it onto the ellipse boundary
+    const angle = Math.atan2(y, x);
+    x = radiusX * Math.cos(angle);
+    y = radiusY * Math.sin(angle);
+  }
+
+  // Convert to percentage relative to parent
+  const percentX = 50 + (x / rect.width * 100);
+  const percentY = 50 + (y / rect.height * 100);
+
+  follower.style.left = percentX + '%';
+  follower.style.top = percentY + '%';
+});
+
+const follower2 = document.querySelector('.follower2');
+const constraintArea2 = document.querySelector('.constraint-area2');
+
+
+
+// Initialize follower position in the center of the constraint area
+function initializeFollowerPosition2() {
+  const followerRadius = 15;
+
+  follower2.style.left = '50%';
+  follower2.style.top = '50%';
+}
+
+// Call initialization when page loads
+window.addEventListener('load', initializeFollowerPosition2);
+initializeFollowerPosition2();
+
+// Function to create circular binary pattern
+function createCircularBinary2() {
+  follower2.innerHTML = ''; // Clear existing content
+  const numDigits = 15; // Number of binary digits around the circle
+  const radius = 10; // Radius of the circle
+
+  for (let i = 0; i < numDigits; i++) {
+    const digit = document.createElement('div');
+    digit.className = 'binary-digit2';
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+    // Calculate position around the circle
+    const angle = (i / numDigits) * 2 * Math.PI;
+    const x = Math.cos(angle) * radius + 11; // Adjusted center offset for better centering
+    const y = Math.sin(angle) * radius + 11; // Adjusted center offset for better centering
+
+    digit.style.left = x + 'px';
+    digit.style.top = y + 'px';
+
+    follower2.appendChild(digit);
+  }
+}
+
+// Update binary display constantly
+function updateBinaryDisplay2() {
+  const digits = follower2.querySelectorAll('.binary-digit2');
+  digits.forEach(digit => {
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+  });
+}
+
+// Function to create binary border around constraint area
+function createBinaryBorder2A() {
+  const numBorderDigits = 50; // Number of binary digits around the border
+  const areaWidth = 150;
+  const areaHeight = 100;
+
+  for (let i = 0; i < numBorderDigits; i++) {
+    const digit = document.createElement('div');
+    digit.className = 'border-digit2';
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+
+    // Calculate position around the ellipse perimeter
+    const angle = (i / numBorderDigits) * 2 * Math.PI;
+    const radiusX = (areaWidth + 5) / 2;
+    const radiusY = (areaHeight + 5) / 2;
+    const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+    const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+    digit.style.left = x + 'px';
+    digit.style.top = y + 'px';
+
+    constraintArea2.appendChild(digit);
+  }
+}
+
+function createBinaryBorder2B() {
+  const numBorderDigits = 40; // Number of binary digits around the border
+  const areaWidth = 150;
+  const areaHeight = 100;
+
+  for (let i = 0; i < numBorderDigits; i++) {
+    const digit2 = document.createElement('div');
+    digit2.className = 'border-digit2';
+    digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+
+    // Calculate position around the ellipse perimeter
+    const angle = (i / numBorderDigits) * 2 * Math.PI;
+    const radiusX = areaWidth / 2;
+    const radiusY = areaHeight / 2;
+    const x = Math.cos(angle) * radiusX + (areaWidth / 2) - 5; // Center and offset for digit width
+    const y = Math.sin(angle) * radiusY + (areaHeight / 2) - 5; // Center and offset for digit height
+
+    digit2.style.left = x + 'px';
+    digit2.style.top = y + 'px';
+
+    constraintArea2.appendChild(digit2);
+  }
+}
+
+// Update border binary display
+function updateBorderBinary2() {
+  const borderDigits = constraintArea2.querySelectorAll('.border-digit2');
+  borderDigits.forEach(digit => {
+    digit.textContent = Math.random() > 0.5 ? '1' : '0';
+  });
+
+
+  const borderDigits2 =constraintArea2.querySelectorAll('.border-digit2');
+  borderDigits2.forEach(digit2 => {
+    digit2.textContent = Math.random() > 0.5 ? '1' : '0';
+  });
+
+}
+
+// Initialize the circular patterns
+createCircularBinary2();
+createBinaryBorder2A();
+createBinaryBorder2B();
+
+// Start the binary animations
+setInterval(updateBinaryDisplay2, 100); // Update pupil every 100ms
+setInterval(updateBorderBinary2, 80); // Update border every 80ms for slightly different timing
+
+document.addEventListener('mousemove', (event) => {
+  const rect = constraintArea2.getBoundingClientRect();
+  const followerRadius = 15;
+
+  // Calculate center and dimensions of the oval/circle
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const radiusX = (rect.width / 2) - followerRadius;
+  const radiusY = (rect.height / 2) - followerRadius;
+
+  // Get mouse position relative to center
+  let x = event.clientX - centerX;
+  let y = event.clientY - centerY;
+
+  // Check if point is outside the ellipse and constrain it
+  const ellipseEquation = (x * x) / (radiusX * radiusX) + (y * y) / (radiusY * radiusY);
+
+  if (ellipseEquation > 1) {
+    // Point is outside ellipse, project it onto the ellipse boundary
+    const angle = Math.atan2(y, x);
+    x = radiusX * Math.cos(angle);
+    y = radiusY * Math.sin(angle);
+  }
+
+  // Convert to percentage relative to parent
+  const percentX = 50 + (x / rect.width * 100);
+  const percentY = 50 + (y / rect.height * 100);
+
+  follower2.style.left = percentX + '%';
+  follower2.style.top = percentY + '%';
+});
+</script>
+
+
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+
+<!--script for modal -->
+
+    <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+
+
+
+
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+
+<!-- script for constant slider thing -->  
+  
+    <script>
+  $(document).ready(function () {
+    // Add smooth scrolling to all links in navbar + footer link
+    $(".navbar a, footer a[href='#myPage']").on("click", function (event) {
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // Store hash
+        var hash = this.hash;
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+        $("html, body").animate(
+          {
+            scrollTop: $(hash).offset().top,
+          },
+          900,
+          function () {
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          },
+        );
+      } // End if
+    });
+
+    $(window).scroll(function () {
+      $(".slideanim").each(function () {
+        var pos = $(this).offset().top;
+
+        var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+      });
+    });
+  });
+</script>
+    
+    
+    
+    <!--------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    ----------------------------------------------------------------------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+<!-- script for marjorana_chip button thing -->
+    <script>
+      var hi1 = 0;
+      function hi(){
+        if (hi1 == 0){
+          document.getElementById("marjorana_chip").innerHTML = "<strong>Majorana 1 chip<strong>";
+          hi1 = 1;
+        }
+      }
+    </script>
+  </body>
+</html>

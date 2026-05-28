@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title> Joe mama's Space Program Quiz</title>
+
+    <script text="javascript">
+
+      function processScore(){
+        var score = 0;
+
+        //check each answer and ad 2 score if correct
+        if(q1.choice[0].checked){
+          score += 1;
+        }
+
+        if(q2.choice[2].checked){
+          score +=1;
+        }
+
+
+        answer3 = q3.writeinBox.value.toLowerCase();
+        if(answer3 == "yes"){
+          score += 1;
+        }
+
+        if(q4.choice[0].checked){
+          score += 1;
+        }
+
+        if(q5.choice[1].checked){
+          score += 1;
+        }
+
+        if(q6.choice[2].checked){
+          score += 1;
+        }
+
+        if(q7.choice[0].checked){
+          score += 1;
+        }
+
+        if(q8.writeinBox.value.toLowerCase() == "microsoft"){
+          score += 1;
+        }
+
+        if(q9.choice[0].checked){
+          score += 1;
+        }
+
+        if(q10.choice[1].checked){
+          score += 1;
+        }
+
+        //dispay da correct answers
+        answerForm.answer1box.value = "a";
+        answerForm.answer2box.value = "c";
+        answerForm.answer3box.value = "yes";
+        answerForm.answer4box.value = "a";
+        answerForm.answer5box.value = "b";
+        answerForm.answer6box.value = "c";
+        answerForm.answer7box.value = "a";
+        answerForm.answer8box.value = "Microsoft";
+        answerForm.answer9box.value = "True";
+        answerForm.answer10box.value = "False";
+
+        answerForm.scoreBox.value = score;
+        answerForm.scoreBox2.value = Math.round((score/10)*100).toString() + "%";
+        
+      }
+
+      function resetForm(){
+        q1.choice[0].checked = false;
+        q1.choice[1].checked = false;
+        q1.choice[2].checked = false;
+        q1.choice[3].checked = false;
+
+        q2.choice[0].checked = false;
+        q2.choice[1].checked = false;
+        q2.choice[2].checked = false;
+        q2.choice[3].checked = false;
+
+        
+        q3.writeinBox.value = "";
+
+        q4.choice[0].checked = false;
+        q4.choice[1].checked = false;
+        q4.choice[2].checked = false;
+        q4.choice[3].checked = false;
+
+        q5.choice[0].checked = false;
+        q5.choice[1].checked = false;
+        q5.choice[2].checked = false;
+        q5.choice[3].checked = false;
+
+        q6.choice[0].checked = false;
+        q6.choice[1].checked = false;
+        q6.choice[2].checked = false;
+        q6.choice[3].checked = false;
+
+        q7.choice[0].checked = false;
+        q7.choice[1].checked = false;
+        q7.choice[2].checked = false;
+        q7.choice[3].checked = false;
+
+        q8.writeinBox.value = "";
+
+        q9.choice[0].checked = false;
+        q9.choice[1].checked = false;
+
+        q10.choice[0].checked = false;
+        q10.choice[1].checked = false;
+        
+        answerForm.answer1box.value = "";
+        answerForm.answer2box.value = "";
+        answerForm.answer3box.value = "";
+        answerForm.answer4box.value = "";
+        answerForm.answer5box.value = "";
+        answerForm.answer6box.value = "";
+        answerForm.answer7box.value = "";
+        answerForm.answer8box.value = "";
+        answerForm.answer9box.value = "";
+        answerForm.answer10box.value = "";
+        answerForm.scoreBox.value = "";
+        answerForm.scoreBox2.value = "";
+      }
+      
+    </script>
+    <style>
+      form{
+        color: black;
+      }
+      hr{
+        background-color: #434343;
+        height: 2px;
+      }
+    </style>
+  </head>
+
+
+
+
+
+  
+
+  <body style="max-width: 1080px; margin: 0 auto; background-color: beige; ">
+    <h1 align="center">Joe Mama'z Future of Technology Quiz</h1>
+    <hr>
+
+
+    <!-- questions begin here    each question will be seperated by  <form>-->
+    <br>
+    <form name="q1">
+      1) Which of the following is true about Quantum Bits<br>
+        <input type="radio" name="choice"> a. They can be both a 1 and a 0<br>
+        <input type="radio" name="choice"> b. They can only be a 1 or a 0<br>
+        <input type="radio" name="choice"> c. They are in most common in day to day laptops<br>
+        <input type="radio" name="choice"> d. They are very consumer friendly<br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q2">
+      2) Which of the following is true about Humanoid Robots<br>
+        <input type="radio" name="choice"> a. They have a high cost to build<br>
+        <input type="radio" name="choice"> b. There are many concerns with job displacement<br>
+        <input type="radio" name="choice"> c. Both A and B are correct<br>
+        <input type="radio" name="choice"> d. None of the answers are correct<br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q3">
+      3) Do you think Quantum Computing is cool (yes or no)
+        <input type="text" name="writeinBox" size="15"> <br>
+    </form>
+    <br>
+    <hr>
+    <br>
+
+    <form name="q4">
+      4) What definition most closely matches the defintition of Quantum Entanglement<br>
+        <input type="radio" name="choice"> a. The states of multiple qubits can be linked, meaning they are correlated even if physically separated.<br>
+        <input type="radio" name="choice"> b. When the state of multiple qubits are physically link together<br>
+        <input type="radio" name="choice"> c. When a qubit is tied by a rope or vine<br>
+        <input type="radio" name="choice"> d. None of the answers are correct<br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q5">
+      5) What definition most closely matches the defintition of Quantum Decoherence<br>
+        <input type="radio" name="choice"> a. The process by which a quantum system gains its unique quantum properties<br>
+        <input type="radio" name="choice"> b. The process by which a quantum system loses its unique quantum properties<br>
+        <input type="radio" name="choice"> c. When a quantum system holds its unique quantum properties for an extended period of time<br>
+        <input type="radio" name="choice"> d. None of the answers are correct<br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q6">
+      6) What does FOV stand for<br>
+        <input type="radio" name="choice"> a. Fried onions and vegetables<br>
+        <input type="radio" name="choice"> b. Fundamentally over vague<br>
+        <input type="radio" name="choice"> c. Field of view<br>
+        <input type="radio" name="choice"> d. Fresh overprotective vest<br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q7">
+      7) What is a Topological Qubit<br>
+        <input type="radio" name="choice"> a. A fundamentally new kind of qubit protected by the principles of topology rather than the more frail quantum states<br>
+        <input type="radio" name="choice"> b. A fundamentally new kind of qubit using the principles of topology rather than the more stronger quantum states<br>
+        <input type="radio" name="choice"> c. A logical topo<br>
+        <input type="radio" name="choice"> d. A topo logical<br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q8">
+      8) What company made the Majorana 1 chip
+        <input type="text" name="writeinBox" size="15"> <br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q9">
+      9) True or False: A Topoconductor is a hybrid material made from indium arsenide (semiconductor) and aluminum (superconductor) that achieves a new Topological Superconducting state. <br>
+        <input type="radio" name="choice"> True<br>
+        <input type="radio" name="choice"> False<br>
+    </form>
+    <hr>
+    <br>
+
+    <form name="q10">
+      10) True or False: Superposition means when a qubit can't exist as a 1 or a 0 at anytime<br>
+        <input type="radio" name="choice"> True<br>
+        <input type="radio" name="choice"> False<br>
+    </form>
+    <hr>
+    <br>
+
+
+    
+
+    <!-- code for grade quiz here -->
+    <form name=answerForm>
+      <input type="button" value="Grade da quiz" onclick="processScore()">
+      <input type="button" value="Reset" onclick="resetForm()"> <br><br>
+
+      <strong>Correct answers:</strong><br>
+      Question 1:  <input type="text" name="answer1box" size="4"><br>
+      Question 2:  <input type="text" name="answer2box" size="4"><br>
+      Question 3:  <input type="text" name="answer3box" size="4"><br>
+      Question 4:  <input type="text" name="answer4box" size="4"><br>
+      Question 5:  <input type="text" name="answer5box" size="4"><br>
+      Question 6:  <input type="text" name="answer6box" size="4"><br>
+      Question 7:  <input type="text" name="answer7box" size="4"><br>
+      Question 8:  <input type="text" name="answer8box" size="4"><br>
+      Question 9:  <input type="text" name="answer9box" size="4"><br>
+      Question 10: <input type="text" name="answer10box" size="3"><br>
+
+      <p>You scored <input type="text" name="scoreBox" size="2"> out of 10. (<input type="text" name="scoreBox2" size="1">)</p>
+    </form>
+    
+  </body>
+  
+</html>
