@@ -102,7 +102,7 @@
                 container.replaceChild(static_span, user_input)
                 # ---------------------------------
 
-                should_skip = (answer == "n" or answer == "no")
+                should_skip = (answer.lower in ["no", "n"])
 
                 if not input_done.done():
                     input_done.set_result(should_skip)
